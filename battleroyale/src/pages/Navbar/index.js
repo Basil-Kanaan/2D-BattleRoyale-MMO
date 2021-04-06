@@ -87,16 +87,16 @@ export default function Navbar() {
                 </Typography>
                 <Tabs className={classes.tabs}>
                     <Tab onClick={() => {
-                        window.location.href = '/#/app';
+                        window.location.href = '/app/play';
                     }} label="Play" icon={<HomeIcon/>}/>
                     <Tab onClick={() => {
-                        window.location.href = '/#/app/mybills';
+                        window.location.href = '/app/instructions';
                     }} label="Instructions" icon={<FileCopyIcon/>}/>
                     <Tab onClick={() => {
-                        window.location.href = '/#/app/compare';
+                        window.location.href = '/app/stats';
                     }} label="Stats" icon={<EqualizerIcon/>}/>
                     <Tab onClick={() => {
-                        window.location.href = '/#/app/compare';
+                        window.location.href = '/app/profile';
                     }} label="Profile" icon={<PersonIcon/>}/>
                     <Tab onClick={handleLogout} label="Logout" icon={<CompareArrowsIcon/>}/>
 

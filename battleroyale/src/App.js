@@ -3,11 +3,8 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 // components
 import Layout from "./components/Layout";
 import Landing from './pages/Landing';
-import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import Forgot from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
-import Verification from './pages/Verification';
+
 import {makeStyles} from "@material-ui/core";
 import {AuthContext} from './contexts/AuthContext';
 
@@ -46,12 +43,9 @@ export default function App() {
             <Switch>
                 <Route path="/" render={() => !isAuth ? (<Landing/>) : (<Redirect to="/app"/>)} exact/>
                 <Route path="/login" render={() => <Login/>} exact/>
-                {/* <Route path="/login" render={() => !isAuth ? (<Login/>) : (<Redirect to="/app"/>)} exact/>*/}
                 <Route path="/app" component={Layout}/>
                 <Route path="/signup" render={() => !isAuth ? (<SignUp/>) : (<Redirect to="/app"/>)}/>
-                <Route path="/forgot-password" render={() => !isAuth ? (<Forgot/>) : (<Redirect to="/app"/>)}/>
-                <Route exact path="/resetpassword/:token" render={(props) => <ResetPassword {...props}/>}/>
-                <Route exact path="/verification/:token" render={(props) => <Verification {...props}/>}/>
+
                 <Route path='*'>
                     <div>Not Found</div>
                 </Route>
