@@ -2,6 +2,7 @@ import React, {useContext, useEffect} from "react";
 import {Redirect, Route, Switch} from 'react-router-dom';
 // components
 import Layout from "./components/Layout";
+import Login from "./pages/Login";
 import Landing from './pages/Landing';
 import SignUp from './pages/SignUp';
 
@@ -50,9 +51,6 @@ export default function App() {
                     <div>Not Found</div>
                 </Route>
             </Switch>
-            {/*<footer className={classes.footer}>*/}
-            {/*    {Copyright()}*/}
-            {/*</footer>*/}
         </div>
     );
 }
