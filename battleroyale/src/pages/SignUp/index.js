@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '../../components/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Paper } from '@material-ui/core'
-import { useFormik } from 'formik';
+import {Paper} from '@material-ui/core'
+import {useFormik} from 'formik';
 import * as yup from 'yup';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
@@ -16,10 +16,17 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { AuthContext } from "../../contexts/AuthContext";
+import {AuthContext} from "../../contexts/AuthContext";
 import CircularProgress from '@material-ui/core/CircularProgress'
-import { green } from '@material-ui/core/colors';
+import {green} from '@material-ui/core/colors';
 
+function Copyright() {
+    return (
+        <Typography variant="body2" color="textSecondary" align="center">
+            {'Copyright © BillTracker 2021. '}
+        </Typography>
+    );
+}
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -46,8 +53,8 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     navbar: {
-        color: '#FBFAF8',
-        backgroundColor: '#0A122A',
+        color: '#EDF2F4',
+        backgroundColor: '#2B2D42',
         paddingTop: '0.5%',
         paddingBottom: '0.5%',
     },
@@ -104,12 +111,12 @@ function SignUp(props) {
     const timer = React.useRef();
     const [loading, setLoading] = React.useState(false);
     const [open, setOpen] = React.useState(false);
-    const { updateAuth, updateToken } = useContext(AuthContext);
+    const {updateAuth, updateToken} = useContext(AuthContext);
     const [confirmPass, setConfirmPass] = React.useState(false);
-    const [values, setValues] = React.useState({ showPassword: false, });
+    const [values, setValues] = React.useState({showPassword: false,});
 
     const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
+        setValues({...values, showPassword: !values.showPassword});
     };
 
     const handleMouseDownPassword = (event) => {
@@ -173,7 +180,7 @@ function SignUp(props) {
                 <Toolbar className={classes.navtitle}>
                     <Typography className={classes.hideBtn} onClick={() => {
                         window.location.href = '/';
-                    }} variant="h6">Battle Royale</Typography>
+                    }} variant="h6">BillTracker</Typography>
                     <div className={classes.navbuttons}>
                         <Button color="inherit" onClick={() => {
                             window.location = 'About';
@@ -185,7 +192,7 @@ function SignUp(props) {
                         }}>Login</Button>
                         <Button color="inherit" onClick={() => {
                             window.location.href = '/#/signup';
-                        }}>Register</Button>
+                        }}>Sign Up</Button>
                     </div>
 
                 </Toolbar>
@@ -266,7 +273,7 @@ function SignUp(props) {
                                                         onMouseDown={handleMouseDownPassword}
                                                         edge="end"
                                                     >
-                                                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                                        {values.showPassword ? <Visibility/> : <VisibilityOff/>}
                                                     </IconButton>
                                                 </InputAdornment>
                                             )
@@ -293,21 +300,23 @@ function SignUp(props) {
                             </Grid>
                             <div className={classes.wrapper}>
                                 <Button fullWidth variant="contained" type="submit"
-                                    className={classes.submit} disabled={loading}>
-                                    {loading ? "" : "Register"}
+                                        className={classes.submit} disabled={loading}>
+                                    {loading ? "" : "Login"}
                                 </Button>
-                                {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+                                {loading && <CircularProgress size={24} className={classes.buttonProgress}/>}
                             </div>
                             <Grid container justify="center">
                                 <Grid item>
                                     <Link href="/#/Login" variant="body2">
-                                        Already have an account? Log in
+                                        Already have an account? Sign in
                                     </Link>
                                 </Grid>
                             </Grid>
                         </form>
                     </div>
-            
+                    <Box mt={8}>
+                        <Copyright/>
+                    </Box>
                 </Paper>
             </Container>
         </div>

@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, {useContext, useRef} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
@@ -6,15 +6,15 @@ import Grid from '@material-ui/core/Grid';
 // import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { useFormik } from 'formik';
+import {useFormik} from 'formik';
 import * as yup from 'yup';
 import mainLogo from './form_icon.png';
-import { AuthContext } from '../../contexts/AuthContext';
+import {AuthContext} from '../../contexts/AuthContext';
 import CircularProgress from '@material-ui/core/CircularProgress'
-import { green } from '@material-ui/core/colors';
+import {green} from '@material-ui/core/colors';
 
 const validationSchema = yup.object({
     email: yup
@@ -30,7 +30,7 @@ const validationSchema = yup.object({
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '90vh',
-        backgroundImage: 'url(https://wallpapercave.com/wp/wp6308454.jpg)',
+        backgroundImage: 'url(https://images.unsplash.com/photo-1607863680198-23d4b2565df0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)',
         backgroundRepeat: 'no-repeat',
         backgroundColor:
             theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
     about2: {
         height: '80vh',
-        backgroundImage: 'url(https://wallpapercave.com/wp/wp6308454.jpg)',
+        backgroundImage: 'url(https://images.unsplash.com/photo-1565514158740-064f34bd6cfd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: "center",
         backgroundSize: "100%"
@@ -57,8 +57,8 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: -12,
     },
     navbar: {
-        color: '#FBFAF8',
-        backgroundColor: '#0A122A',
+        color: '#0A122A',
+        backgroundColor: '#698F3F',
         paddingTop: '0.5%',
         paddingBottom: '0.5%',
     },
@@ -188,7 +188,7 @@ function Landing() {
     const timer = React.useRef();
     const [loading, setLoading] = React.useState(false);
     const [open, setOpen] = React.useState(false);
-    const { updateAuth, updateToken } = useContext(AuthContext);
+    const {updateAuth, updateToken} = useContext(AuthContext);
     const [confirmPass, setConfirmPass] = React.useState(false);
 
     const handleRegister = (values) => {
@@ -259,6 +259,9 @@ function Landing() {
                                     About
                                 </Button>
                                 <Button color="inherit" onClick={() => {
+                                    window.location.href = '/#/Login';
+                                }}>Login</Button>
+                                <Button color="inherit" onClick={() => {
                                     window.location.href = '/#/signup';
                                 }}>Register</Button>
                             </div>
@@ -269,7 +272,7 @@ function Landing() {
 
                 <Grid item xs={6}>
                     <Typography variant="h1" className={classes.slogan}><b>
-                        Login to Battle Royale</b>
+                        New to Battle Royale?</b>
                     </Typography>
                 </Grid>
 
@@ -277,13 +280,46 @@ function Landing() {
 
                     <Card className={classes.card}>
 
-                        <Typography align="center" component="h1" variant="h4">Login</Typography>
+                        <img align={"right"} height="40px" width="40px" src={mainLogo} alt=""/>
 
-                        <hr border="1px solid gray" height="1px" width="60%" color="#dbdbdb" />
+                        <Typography align="center" component="h1" variant="h4">Sign Up</Typography>
+
+                        <hr border="1px solid gray" height="1px" width="60%" color="#dbdbdb"/>
 
                         <form className={classes.form} onSubmit={formik.handleSubmit}>
                             <Grid container spacing={2}>
-                                
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        autoComplete="fname"
+                                        name="firstName"
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        id="firstName"
+                                        label="First Name"
+                                        value={formik.values.firstName}
+                                        onChange={formik.handleChange}
+                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                        helperText={formik.touched.firstName && formik.errors.firstName}
+                                        autoFocus
+
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        id="lastName"
+                                        label="Last Name"
+                                        name="lastName"
+                                        autoComplete="lname"
+                                        value={formik.values.lastName}
+                                        onChange={formik.handleChange}
+                                        error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                                        helperText={formik.touched.lastName && formik.errors.lastName}
+                                    />
+                                </Grid>
                                 <Grid item xs={12}>
                                     <TextField
                                         variant="outlined"
@@ -315,21 +351,36 @@ function Landing() {
                                         helperText={formik.touched.password && formik.errors.password}
                                     />
                                 </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        name="confirmpassword"
+                                        label="Confirm Password"
+                                        type="password"
+                                        id="confirmpassword"
+                                        value={formik.values.confirmpassword}
+                                        onChange={formik.handleChange}
+                                        error={confirmPass}
+                                        helperText={confirmPass ? "Passwords do not match" : ""}
+                                    />
+                                </Grid>
 
                             </Grid>
                             <div className={classes.wrapper}>
                                 <Button fullWidth variant="contained" type="submit"
-                                    className={classes.submit} disabled={loading}>
-                                    {loading ? "" : "Login"}
+                                        className={classes.submit} disabled={loading}>
+                                    {loading ? "" : "Sign Up"}
                                 </Button>
-                                {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+                                {loading && <CircularProgress size={24} className={classes.buttonProgress}/>}
                             </div>
                         </form>
 
                         <Grid container justify="center">
                             <Grid item>
-                                <Link href="/#/signup" variant="body2">
-                                    Don't have an account? Register
+                                <Link href="/#/Login" variant="body2">
+                                    Already have an account? Sign in
                                 </Link>
                             </Grid>
                         </Grid>
@@ -346,26 +397,26 @@ function Landing() {
                         </Typography>
 
                         <Typography variant="h5" className={classes.aboutmsg}>
-                            Battle Royale is an MMOG<br /><br />
-                            This game includes players, AI, obstacles and a whole world to move around in.<br /><br />
+                            Battle Royale is an MMOG<br/><br/>
+                            This game includes players, AI, obstacles and a whole world to move around in.<br/><br/>
                             You need to survive as long as you can without dying, killing other players and AI to win.
-                            Can you survive the longest? <br /><br />
+                            Can you survive the longest? <br/><br/>
                         </Typography>
 
 
                     </Grid>
                     <Grid item xs={6}>
-                               <img
-                                src={'https://ychef.files.bbci.co.uk/976x549/p091j3dx.jpg'}
-                                className={classes.subimage} />
-                       
+                        <img
+                            src={'https://ychef.files.bbci.co.uk/976x549/p091j3dx.jpg'}
+                            className={classes.subimage}/>
+
                     </Grid>
 
                 </Grid>
 
             </div>
 
-        
+
         </div>
     );
 }
