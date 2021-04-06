@@ -20,13 +20,6 @@ import { AuthContext } from "../../contexts/AuthContext";
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { green } from '@material-ui/core/colors';
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © BillTracker 2021. '}
-        </Typography>
-    );
-}
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -53,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     navbar: {
-        color: '#EDF2F4',
-        backgroundColor: '#2B2D42',
+        color: '#FBFAF8',
+        backgroundColor: '#0A122A',
         paddingTop: '0.5%',
         paddingBottom: '0.5%',
     },
@@ -180,7 +173,7 @@ function SignUp(props) {
                 <Toolbar className={classes.navtitle}>
                     <Typography className={classes.hideBtn} onClick={() => {
                         window.location.href = '/';
-                    }} variant="h6">BillTracker</Typography>
+                    }} variant="h6">Battle Royale</Typography>
                     <div className={classes.navbuttons}>
                         <Button color="inherit" onClick={() => {
                             window.location = 'About';
@@ -192,7 +185,7 @@ function SignUp(props) {
                         }}>Login</Button>
                         <Button color="inherit" onClick={() => {
                             window.location.href = '/#/signup';
-                        }}>Sign Up</Button>
+                        }}>Register</Button>
                     </div>
 
                 </Toolbar>
@@ -301,22 +294,20 @@ function SignUp(props) {
                             <div className={classes.wrapper}>
                                 <Button fullWidth variant="contained" type="submit"
                                     className={classes.submit} disabled={loading}>
-                                    {loading ? "" : "Login"}
+                                    {loading ? "" : "Register"}
                                 </Button>
                                 {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
                             </div>
                             <Grid container justify="center">
                                 <Grid item>
                                     <Link href="/#/Login" variant="body2">
-                                        Already have an account? Sign in
+                                        Already have an account? Log in
                                     </Link>
                                 </Grid>
                             </Grid>
                         </form>
                     </div>
-                    <Box mt={8}>
-                        <Copyright />
-                    </Box>
+            
                 </Paper>
             </Container>
         </div>

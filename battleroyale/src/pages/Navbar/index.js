@@ -16,8 +16,8 @@ import {AuthContext} from '../../contexts/AuthContext';
 
 const useStyles = makeStyles((theme) => ({
     app: {
-        color: '#0A122A',
-        backgroundColor: '#698F3F',
+        color: '#FBFAF8',
+        backgroundColor: '#0A122A',
         paddingTop: '0.5%',
         paddingBottom: '0.5%',
     },
