@@ -19,6 +19,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { AuthContext } from "../../contexts/AuthContext";
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { green } from '@material-ui/core/colors';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -107,6 +110,16 @@ function SignUp(props) {
     const { updateAuth, updateToken } = useContext(AuthContext);
     const [confirmPass, setConfirmPass] = React.useState(false);
     const [values, setValues] = React.useState({ showPassword: false, });
+    const [value, setValue] = React.useState('');
+
+    const handleRadioGroupChange = (event) => {
+        setValue((event.target).value);
+      };
+
+    //   const handleCheckBtnChange = (event) => {
+    //     setState({ ...state, [event.target.name]: event.target.checked });
+    //   };
+
 
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
@@ -200,7 +213,7 @@ function SignUp(props) {
 
                         <form className={classes.form} onSubmit={formik.handleSubmit}>
                             <Grid container spacing={2}>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item xs={12}>
                                     <TextField
                                         autoComplete="fname"
                                         name="firstName"
@@ -208,41 +221,12 @@ function SignUp(props) {
                                         required
                                         fullWidth
                                         id="firstName"
-                                        label="First Name"
+                                        label="Username"
                                         value={formik.values.firstName}
                                         onChange={formik.handleChange}
                                         error={formik.touched.firstName && Boolean(formik.errors.firstName)}
                                         helperText={formik.touched.firstName && formik.errors.firstName}
                                         autoFocus
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        id="lastName"
-                                        label="Last Name"
-                                        name="lastName"
-                                        value={formik.values.lastName}
-                                        onChange={formik.handleChange}
-                                        error={formik.touched.lastName && Boolean(formik.errors.lastName)}
-                                        autoComplete="lname"
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        id="email"
-                                        label="Email Address"
-                                        name="email"
-                                        autoComplete="email"
-                                        value={formik.values.email}
-                                        onChange={formik.handleChange}
-                                        error={formik.touched.email && Boolean(formik.errors.email)}
-                                        helperText={formik.touched.email && formik.errors.email}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -289,6 +273,57 @@ function SignUp(props) {
                                         helperText={confirmPass ? "Passwords do not match" : ""}
                                     />
                                 </Grid>
+
+                                <Grid item xs={12}>
+                                     <TextField
+                                     fullWidth
+                                     required
+                                        id="date"
+                                        label="Birthday"
+                                        type="date"
+                                        defaultValue="YYYY-MM-DD"
+                                        className={classes.textField}
+                                        InputLabelProps={{
+                                        shrink: true,
+                                        }}
+                                    />
+                                </Grid>
+
+                                <Grid item xs={12}>
+                                <RadioGroup aria-label="day" name="days" value={value} onChange={handleRadioGroupChange}>
+                                <FormControlLabel value="Morning" control={<Radio />} label="Morning" />
+                                <FormControlLabel value="Afternoon" control={<Radio />} label="Afternoon" />
+                                <FormControlLabel value="Night" control={<Radio />} label="Night" />
+                                </RadioGroup>
+                                </Grid>
+
+
+                                {/* <Grid item xs={12}>
+                                <FormControlLabel
+                                control={
+                                    <Checkbox checked={gilad} onChange={this.handleChange('Beginner')} value="Beginner" />
+                                }
+                                label="Beginner"
+                                />
+                                <FormControlLabel
+                                control={
+                                    <Checkbox checked={jason} onChange={this.handleChange('Intermediate')} value="Intermediate" />
+                                }
+                                label="Intermediate"
+                                />
+                                <FormControlLabel
+                                control={
+                                    <Checkbox
+                                    checked={antoine}
+                                    onChange={this.handleChange('Advanced')}
+                                    value="Advanced"
+                                    />
+                                }
+                                label="Advanced"
+                                />
+                                </Grid> */}
+                                
+
 
                             </Grid>
                             <div className={classes.wrapper}>

@@ -39,15 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     about: {
-        height: '80vh',
-    },
-
-    about2: {
-        height: '80vh',
-        backgroundImage: 'url(https://wallpapercave.com/wp/wp6308454.jpg)',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: "center",
-        backgroundSize: "100%"
+        height: '100vh',
     },
     buttonProgress: {
         color: green[500],
