@@ -259,7 +259,7 @@ function Landing() {
                                     About
                                 </Button>
                                 <Button color="inherit" onClick={() => {
-                                    window.location.href = '/#/signup';
+                                    window.location.href = '/#/register';
                                 }}>Register</Button>
                             </div>
 
@@ -328,7 +328,7 @@ function Landing() {
 
                         <Grid container justify="center">
                             <Grid item>
-                                <Link href="/#/signup" variant="body2">
+                                <Link href="/#/register" variant="body2">
                                     Don't have an account? Register
                                 </Link>
                             </Grid>

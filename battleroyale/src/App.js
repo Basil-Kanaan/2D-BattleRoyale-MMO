@@ -4,7 +4,7 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 import Layout from "./components/Layout";
 import Login from "./pages/Login";
 import Landing from './pages/Landing';
-import SignUp from './pages/SignUp';
+import Register from './pages/Register';
 
 import {makeStyles} from "@material-ui/core";
 import {AuthContext} from './contexts/AuthContext';
@@ -45,7 +45,7 @@ export default function App() {
                 <Route path="/" render={() => !isAuth ? (<Landing/>) : (<Redirect to="/app"/>)} exact/>
                 <Route path="/login" render={() => <Login/>} exact/>
                 <Route path="/app" component={Layout}/>
-                <Route path="/signup" render={() => !isAuth ? (<SignUp/>) : (<Redirect to="/app"/>)}/>
+                <Route path="/register" render={() => !isAuth ? (<Register/>) : (<Redirect to="/app"/>)}/>
 
                 <Route path='*'>
                     <div>Not Found</div>
