@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect} from "react";
 import {Button, Grid} from "@material-ui/core";
 import Paper from '@material-ui/core/Paper';
 import CardActions from '@material-ui/core/CardActions';
@@ -63,7 +63,7 @@ export default function Dashboard(props) {
         }).catch(err => {
             console.log("Error");
         });
-    }
+    };
 
     const getUserInfo = () => {
         fetch('http://localhost:8000/api/user/profile', {
@@ -83,11 +83,11 @@ export default function Dashboard(props) {
         }).catch(err => {
             console.log("Error");
         });
-    }
+    };
 
-    
+
     const getBillStatus = (email) => {
-        console.log("EMAI"+email);
+        console.log("EMAI" + email);
         var formBody = [];
         var encodedKey = encodeURIComponent("email");
         var encodedValue = encodeURIComponent(email);
@@ -106,12 +106,12 @@ export default function Dashboard(props) {
         }).catch(err => {
             alert(err);
         });
-    }
+    };
 
     const getLastSixMonths = () => {
         var d = new Date();
         var m = d.getMonth();
-        var months = new Array();
+        var months = [];
         months[0] = "Jan";
         months[1] = "Feb";
         months[2] = "Mar";
@@ -127,13 +127,13 @@ export default function Dashboard(props) {
 
         var i;
         for (i = 1; i < 7; i++) {
-            lastSixMonths[i-1] = months[(m-i+12)%12];
+            lastSixMonths[i - 1] = months[(m - i + 12) % 12];
         }
-    }
+    };
 
     const getPieData = () => {
         var d = new Date();
-        var month = new Array();
+        var month = [];
         month[0] = "January";
         month[1] = "February";
         month[2] = "March";
@@ -149,7 +149,7 @@ export default function Dashboard(props) {
 
         var lastMonth = (d.getMonth() + 12) % 12;
         var n = month[lastMonth];
-        
+
         var i;
         for (i = 0; i < list.length; i++) {
             if (list[i].month == n) {
@@ -170,10 +170,10 @@ export default function Dashboard(props) {
                 }
             }
         }
-    }
+    };
 
     const getTrendData = () => {
-        var month = new Array();
+        var month = [];
         month[0] = "January";
         month[1] = "February";
         month[2] = "March";
@@ -189,13 +189,13 @@ export default function Dashboard(props) {
 
         var today = new Date();
         var month = today.getMonth();
-        
+
         var h = 0;
         var i;
-        for (i = (month+6); i < month+12; i++) {
+        for (i = (month + 6); i < month + 12; i++) {
             var j = i;
             if (j > 11) {
-                j = j%12;
+                j = j % 12;
             }
             var k;
             for (k = 0; k < list.length; k++) {
@@ -207,18 +207,18 @@ export default function Dashboard(props) {
                     sixPhone[h] = list[k].billamt;
                 } else if (list[k].month == month[j] && list[k].type == 'Utilities') {
                     sixUtilities[h] = list[k].billamt;
-                } 
+                }
             }
             h++;
         }
-    }
+    };
 
     // gets monthly and yearly bills that are scheduled in the next 7 days
     const getUpcomingBills = () => {
         var today = new Date();
         var nextWeek = new Date();
         nextWeek.setDate(today.getDate() + 7);
-        var upcoming = new Array();
+        var upcoming = [];
         var i;
         for (i = 0; i < list.length; i++) {
             var billDate = new Date();
@@ -228,14 +228,14 @@ export default function Dashboard(props) {
                 billDate.setDate(list[i].day);
                 billDate.setMonth(list[i].month);
             } else {
-                billDate.setDate(today.getDate()-1);
+                billDate.setDate(today.getDate() - 1);
             }
             if (billDate > today && billDate <= nextWeek) {
                 upcoming.push(list[i]);
             }
         }
         setUpcomingBills(upcoming);
-    }
+    };
 
     useEffect(() => {
         getUserInfo();

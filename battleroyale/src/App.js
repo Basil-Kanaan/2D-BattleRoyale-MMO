@@ -34,7 +34,7 @@ export default function App() {
         }).catch(err => {
             console.log("Error");
         });
-    }
+    };
     useEffect(() => {
         //checkAuthenticated();
     }, []);
