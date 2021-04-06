@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import {makeStyles} from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -134,7 +133,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props;
 
     return (
         <div
@@ -202,12 +201,12 @@ export default function Profile() {
         setValue(newValue);
     };
     const handleProfileChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
+        setValues({...values, [prop]: event.target.value});
     };
     const handlePasswordChange = (prop) => (event) => {
         setPasswordOpen2(false);
         setPasswordOpen(false);
-        setPasswords({ ...passwords, [prop]: event.target.value });
+        setPasswords({...passwords, [prop]: event.target.value});
     };
     const handleClick = () => {
         handleInfoChange();
@@ -228,7 +227,7 @@ export default function Profile() {
         }).then(response => response.json()).then(data => {
             setCurrPass(data.password);
             setOriginalEmail(data.email);
-            setValues({ ...values, first_name: data.firstName, last_name: data.lastName, email: data.email });
+            setValues({...values, first_name: data.firstName, last_name: data.lastName, email: data.email});
         }).catch(err => {
             console.log("Error");
         });
@@ -274,7 +273,7 @@ export default function Profile() {
         }).then(response => response.json()).then(data => {
             console.log(data);
             setOriginalEmail(data.email);
-            setValues({ ...values, first_name: data.firstName, last_name: data.lastName, email: data.email });
+            setValues({...values, first_name: data.firstName, last_name: data.lastName, email: data.email});
         }).catch(err => {
             console.log("Error");
         });
@@ -312,8 +311,7 @@ export default function Profile() {
             console.log(data);
             if (data === "Invalid password") {
                 setPasswordOpen2(true);
-            }
-            else {
+            } else {
                 setPasswordOpen2(false);
                 getUserInfo();
                 setPasswordOpen1(true);
@@ -345,8 +343,7 @@ export default function Profile() {
         }).then(response => response.json()).then(data => {
             if (data === "Invalid Password!") {
                 setDeletePasswordWrong(true);
-            }
-            else {
+            } else {
                 timer.current = window.setTimeout(() => {
                     localStorage.removeItem("token");
                     window.location.href = '/';
@@ -381,7 +378,7 @@ export default function Profile() {
         if (reason === 'clickaway') {
             return;
         }
-        setPasswords({ ...passwords, current_password: "", new_password: "", new_password2: "" });
+        setPasswords({...passwords, current_password: "", new_password: "", new_password2: ""});
         setPasswordOpen1(false);
     };
 
@@ -411,7 +408,7 @@ export default function Profile() {
                 </Alert>
             </Snackbar>
             <main className={classes.content}>
-                <PageTitle title="Account Settings" />
+                <PageTitle title="Account Settings"/>
                 <Container maxWidth="lg" className={classes.container}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={4} lg={2}>
@@ -427,9 +424,9 @@ export default function Profile() {
                                 <Button onClick={() => {
                                     handleDialogOpen();
                                 }} className={classes.logout}
-                                    color="secondary">Delete Account</Button>
+                                        color="secondary">Delete Account</Button>
                                 <Dialog open={dialogOpen} onClose={handleDialogClose}
-                                    aria-labelledby="form-dialog-title">
+                                        aria-labelledby="form-dialog-title">
                                     <DialogTitle id="form-dialog-title">Delete account</DialogTitle>
                                     <DialogContent>
                                         <DialogContentText>
@@ -466,9 +463,9 @@ export default function Profile() {
                                         <Grid container spacing={2}>
                                             <Grid item xs={12} sm={6}>
                                                 <FormControl id="firstname"
-                                                    fullWidth
-                                                    label="First Name"
-                                                    variant="outlined">
+                                                             fullWidth
+                                                             label="First Name"
+                                                             variant="outlined">
                                                     <InputLabel htmlFor="outlined-adornment-firstname">First
                                                         Name</InputLabel>
                                                     <OutlinedInput
@@ -481,9 +478,9 @@ export default function Profile() {
                                             </Grid>
                                             <Grid item xs={12} sm={6}>
                                                 <FormControl id="lastname"
-                                                    fullWidth
-                                                    label="Last Name"
-                                                    variant="outlined">
+                                                             fullWidth
+                                                             label="Last Name"
+                                                             variant="outlined">
                                                     <InputLabel htmlFor="outlined-adornment-lastname">Last
                                                         Name</InputLabel>
                                                     <OutlinedInput
@@ -496,9 +493,9 @@ export default function Profile() {
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <FormControl id="email"
-                                                    fullWidth
-                                                    label="Email"
-                                                    variant="outlined">
+                                                             fullWidth
+                                                             label="Email"
+                                                             variant="outlined">
                                                     <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
                                                     <OutlinedInput
                                                         id="outlined-adornment-email"
@@ -510,9 +507,9 @@ export default function Profile() {
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <FormControl id="phonenumber"
-                                                    fullWidth
-                                                    label="Phone Number"
-                                                    variant="outlined">
+                                                             fullWidth
+                                                             label="Phone Number"
+                                                             variant="outlined">
                                                     <InputLabel htmlFor="outlined-adornment-firstname">Phone
                                                         Number</InputLabel>
                                                     <OutlinedInput
@@ -526,7 +523,7 @@ export default function Profile() {
 
                                         </Grid>
                                         <Button className={classes.saveBtn} onClick={handleClick} variant="contained"
-                                            color="primary"> Save Changes</Button>
+                                                color="primary"> Save Changes</Button>
                                     </TabPanel>
                                     <TabPanel value={value} index={1}>
                                         <Typography className={classes.paperTitle}>Account Security</Typography>
@@ -574,8 +571,8 @@ export default function Profile() {
 
                                         </Grid>
                                         <Button className={classes.saveBtn} onClick={handlePasswordClick}
-                                            variant="contained"
-                                            color="primary"> Change Password</Button>
+                                                variant="contained"
+                                                color="primary"> Change Password</Button>
 
                                     </TabPanel>
                                 </div>
@@ -585,7 +582,7 @@ export default function Profile() {
                     </Grid>
 
                     <Box pt={4}>
-                        <Copyright />
+                        <Copyright/>
                     </Box>
                 </Container>
             </main>

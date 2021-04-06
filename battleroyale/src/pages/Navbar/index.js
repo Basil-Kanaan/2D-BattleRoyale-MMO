@@ -9,9 +9,7 @@ import CompareArrowsIcon from '@material-ui/icons/CompareArrows';
 import PersonIcon from '@material-ui/icons/Person';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import {makeStyles} from '@material-ui/core/styles';
-import Menu from '@material-ui/core/Menu';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
-import MenuItem from '@material-ui/core/MenuItem';
 import {AuthContext} from '../../contexts/AuthContext';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         marginLeft: '5%',
     },
-    tabs: {     
+    tabs: {
         marginRight: '10%',
         justifyContent: 'center',
         alignItems: 'center',
@@ -71,14 +69,14 @@ export default function Navbar() {
     const handleProfile = () => {
         setAnchorEl(null);
         window.location.href = '/#/app/profile';
-    }
+    };
 
     const handleLogout = () => {
         setAnchorEl(null);
         updateAuth(false);
         localStorage.removeItem("token");
         window.location.href = '/';
-    }
+    };
     return (
         <AppBar className={classes.app}>
             <Toolbar className={classes.nav}>
@@ -87,21 +85,21 @@ export default function Navbar() {
                 </Typography>
                 <Tabs className={classes.tabs}>
                     <Tab onClick={() => {
-                        window.location.href = '/#/app';
+                        window.location.href = '/#/app/play';
                     }} label="Play" icon={<HomeIcon/>}/>
                     <Tab onClick={() => {
-                        window.location.href = '/#/app/mybills';
+                        window.location.href = '/#/app/instructions';
                     }} label="Instructions" icon={<FileCopyIcon/>}/>
                     <Tab onClick={() => {
-                        window.location.href = '/#/app/compare';
+                        window.location.href = '/#/app/stats';
                     }} label="Stats" icon={<EqualizerIcon/>}/>
                     <Tab onClick={() => {
-                        window.location.href = '/#/app/compare';
+                        window.location.href = '/#/app/profile';
                     }} label="Profile" icon={<PersonIcon/>}/>
                     <Tab onClick={handleLogout} label="Logout" icon={<CompareArrowsIcon/>}/>
 
                 </Tabs>
-                
+
             </Toolbar>
         </AppBar>
     );
