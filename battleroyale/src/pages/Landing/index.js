@@ -39,15 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     about: {
-        height: '80vh',
-    },
-
-    about2: {
-        height: '80vh',
-        backgroundImage: 'url(https://wallpapercave.com/wp/wp6308454.jpg)',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: "center",
-        backgroundSize: "100%"
+        height: '100vh',
     },
     buttonProgress: {
         color: green[500],
@@ -259,7 +251,7 @@ function Landing() {
                                     About
                                 </Button>
                                 <Button color="inherit" onClick={() => {
-                                    window.location.href = '/#/register';
+                                    window.location.href = '/#/signup';
                                 }}>Register</Button>
                             </div>
 
@@ -328,7 +320,7 @@ function Landing() {
 
                         <Grid container justify="center">
                             <Grid item>
-                                <Link href="/#/register" variant="body2">
+                                <Link href="/#/signup" variant="body2">
                                     Don't have an account? Register
                                 </Link>
                             </Grid>
