@@ -6,55 +6,25 @@ export default makeStyles((theme) => ({
     },
     cardGrid: {
         padding: 0,
+        
     },
     card: {
         marginTop: 30,
+        marginLeft: 'auto',
+        marginRight: 'auto',
         position: 'relative',
-        height: 150,
+        height: 600,
+        width: 600,
         padding: 25,
         textAlign: 'center',
+        alignItems: "center",
         color: theme.palette.text.secondary,
         borderRadius: 5,
         boxShadow: '5px 5px 13px #ededed, -5px -5px 13px #ffffff;',
     },
-
-    expectedTotal: {
-        alignItems: "right",
-        textAlign: 'right',
-    },
-    bottomCards: {
-        marginTop: 30,
-        height: 500,
-        padding: 25,
+    cardTitle: {
         textAlign: 'center',
-        color: theme.palette.text.secondary,
-        borderRadius: 5,
-        boxShadow: '5px 5px 13px #ededed, -5px -5px 13px #ffffff;'
-    },
-    inner: {
-        display: 'flex',
-        justifyContent: 'space-between'
-    },
-    main_container: {
-        padding: "20 30",
-    },
-    main_greeting: {
-        display: "flex",
-        alignItems: "center",
-    },
-    hello_img: {
-        maxHeight: 150,
-        objectFit: "contain",
-        marginRight: 20,
-    },
-    main_greeting_p: {
-        fontSize: 14,
-        fontWeight: 700,
-        color: "#a5aaad"
-    },
-    main_greeting_h1: {
-        fontSize: 24,
-        color: "#2e4a66",
-
+        fontSize: 30,
     }
+    
 }));

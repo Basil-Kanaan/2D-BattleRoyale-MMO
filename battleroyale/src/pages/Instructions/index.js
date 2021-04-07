@@ -252,137 +252,64 @@ export default function Dashboard(props) {
                     Login successful
                 </Alert>
             </Snackbar>
-            <div className={classes.main_greeting}>
-                <img src={HelloImg} className={classes.hello_img} alt=""/>
-                <div style={{flex: 1, flexDirection: "row"}}>
-                    <Typography className={classes.main_greeting_h1} variant="h1">Hello {value} </Typography>
-                    <Typography className={classes.main_greeting_p}>Welcome to your dashboard</Typography>
-                </div>
-            </div>
-            <Grid container spacing={2}>
-                <Grid item lg={3}
-                      sm={6}
-                      xl={3}
-                      xs={12}>
+            <Grid >
+                <Grid xs={12}>
                     <Paper className={classes.card} variant="outlined">
-                        <CardActions>
-                            <div className={classes.inner}>
-                                <Typography noWrap variant="h6" size="small">Total Bills</Typography>
-                                <Typography noWrap style={{position: 'relative', bottom: -80, right: 90}} variant="h2"
-                                            size="small">{billCount}</Typography>
-                            </div>
-                        </CardActions>
+                       <Typography className={classes.cardTitle} variant="h6" size="small">Instructions</Typography>
+                        
+                        <ul>
+                            <li>
+                                Use WASD to move the player
+                            </li>
+                            <li>
+                                Use cursor to point the turret and left click to shoot
+                            </li>
+                            <li>
+                                Move around to pick up different ammo packs
+                            </li>
+                            <li>
+                                Each quadrant represents a terrain:
+                                <ul>
+                                    <li>
+                                        Nether(Purple): All players take more damage
+                                    </li>
+                                    <li>
+                                        Ice(Blue): Player can move faster
+                                    </li>
+                                    <li>
+                                        Sand(Yellow): Player moves slower
+                                    </li>
+                                    <li>
+                                        Grass(Green): Player moves normally
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                3 Different AI
+                            </li>
+                            <li>
+                                Score by killing the AI
+                            </li>
+                            <li>
+                                Multiple weapons (Cannon, Pistol, Shotgun)
+                            </li>
+                            <li>
+                                Use space bar to switch between weapons
+                            </li>
+                            <li>
+                                Change the difficulty by clicking on one of the options
+                            </li>
+                            <li>
+                                Restart the game by clicking the play again button at the bottom
+                            </li>
+                            <li>
+                                Try to last as long as you can!
+                            </li>
+                        </ul>
                     </Paper>
                 </Grid>
-                <Grid item lg={3}
-                      sm={6}
-                      xl={3}
-                      xs={12}>
-                    <Paper className={classes.card} variant="outlined">
-                        <CardActions>
-                            <div className={classes.inner}>
-                                <Typography variant="h6" size="small">Total Reviews</Typography>
-                                <Typography style={{position: 'relative', bottom: -80, right: 120}} variant="h2"
-                                            size="small">666</Typography>
-                            </div>
-                        </CardActions>
-                    </Paper>
-                </Grid>
-                <Grid item lg={6}
-                      sm={12}
-                      xl={6}
-                      xs={12}>
-                    <Paper className={classes.card} variant="outlined">
-                        <CardActions>
-                            <Typography noWrap variant="h6" size="small">Upcoming Bills</Typography>
-                        </CardActions>
-                        <table>
-                            <tr>
-                                <th>Name</th>
-                                <th>Due on</th>
-                                <th>Amount Due</th>
-                            </tr>
-                            {upcomingBills.map((item) => (
-                                <tr>
-                                    <td>{item.name}</td>
-                                    <td>{item.month + " " + item.day}</td>
-                                    <td>{item.billamt}</td>
-                                </tr>
-                            ))}
-                        </table>
-                    </Paper>
-                </Grid>
-                <Grid item xs={12} sm={12} md={6}>
-                    <Paper className={classes.bottomCards} variant="outlined">
-                        <CardActions>
-                            <Typography variant="h6" size="small">Expected Total</Typography>
-                            <Button color="primary" variant="contained" style={{textTransform: 'none'}}>Monthly</Button>
-                            <Typography id="expectedTotal" variant="h6" size="small"
-                                        className={classes.expectedTotal}>$666</Typography>
-                        </CardActions>
-
-                        <Chart
-                            width={'100%'}
-                            height={'95%'}
-                            chartType="PieChart"
-                            loader={<div>Loading Chart</div>}
-                            data={[
-                                ['Category', 'in dollars (CAD)'],
-                                ['Utilities', utilities],
-                                ['Food', food],
-                                ['Internet', internet],
-                                ['Mobile Phone', phone],
-                                ['Electricity', electricity],
-                                ['Water', water],
-                                ['Other', other]
-                            ]}
-                            rootProps={{'data-testid': '2'}}
-                            options={{
-                                tooltip: {
-                                    backgroundColor: "transparent",
-                                }
-                                // tooltip: { format: { value: function (value, ratio, id) { return value; } } }
-                            }}
-                        />
-                    </Paper>
-                </Grid>
-                {/*<Grid item xs={12} sm={12} md={6}>*/}
-                {/*    <Paper className={classes.bottomCards} variant="outlined">*/}
-                {/*        <CardActions>*/}
-                {/*            <Typography variant="h6" size="small">Goals</Typography>*/}
-                {/*        </CardActions>*/}
-                {/*    </Paper>*/}
-                {/*</Grid>*/}
-                <Grid item xs={12} sm={12} md={6}>
-                    <Paper className={classes.bottomCards} variant="outlined">
-                        <CardActions>
-                            <Typography variant="h6" size="small">Expenses in the last 6 months</Typography>
-                        </CardActions>
-
-                        <Chart
-                            width={'100%'}
-                            height={'95%'}
-                            chartType="Line"
-                            loader={<div>Loading Chart</div>}
-                            data={[
-                                [
-                                    'Months',
-                                    'Utilities',
-                                    'Food',
-                                    'Internet',
-                                    'Mobile Phone'
-                                ],
-                                [lastSixMonths[0], sixUtilities[5], sixFood[5], sixInternet[5], sixPhone[5]],
-                                [lastSixMonths[1], sixUtilities[4], sixFood[4], sixInternet[4], sixPhone[4]],
-                                [lastSixMonths[2], sixUtilities[3], sixFood[3], sixInternet[3], sixPhone[3]],
-                                [lastSixMonths[3], sixUtilities[2], sixFood[2], sixInternet[2], sixPhone[2]],
-                                [lastSixMonths[4], sixUtilities[1], sixFood[1], sixInternet[1], sixPhone[1]],
-                                [lastSixMonths[5], sixUtilities[0], sixFood[0], sixInternet[0], sixPhone[0]]
-                            ]}
-                            rootProps={{'data-testid': '3'}}
-                        />
-                    </Paper>
-                </Grid>
+                
+                
             </Grid>
         </div>
     );

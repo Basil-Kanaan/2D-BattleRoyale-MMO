@@ -17,47 +17,35 @@ export default makeStyles((theme) => ({
         borderRadius: 5,
         boxShadow: '5px 5px 13px #ededed, -5px -5px 13px #ffffff;',
     },
-
-    expectedTotal: {
-        alignItems: "right",
-        textAlign: 'right',
-    },
-    bottomCards: {
-        marginTop: 30,
-        height: 500,
-        padding: 25,
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-        borderRadius: 5,
-        boxShadow: '5px 5px 13px #ededed, -5px -5px 13px #ffffff;'
-    },
-    inner: {
-        display: 'flex',
-        justifyContent: 'space-between'
-    },
-    main_container: {
-        padding: "20 30",
-    },
-    main_greeting: {
-        display: "flex",
-        alignItems: "center",
-    },
-    hello_img: {
-        maxHeight: 150,
-        objectFit: "contain",
-        marginRight: 20,
-    },
-    main_greeting_p: {
-        fontSize: 14,
-        fontWeight: 700,
-        color: "#a5aaad"
-    },
-    main_greeting_h1: {
-        fontSize: 24,
-        color: "#2e4a66",
-
-    },
+   
     table: {
-        minWidth: 650,
+        width: 200,
+        borderColor: 'red',
+      },
+    container: {
+       marginLeft: "80%",
+        width: 200,
+        alignItems: "center",
+        textAlign: 'center',
+        borderColor: 'red', 
+    },
+    cont1: {
+        marginRight: "10%",
+        height: 400,
+    },
+    cont2: {
+        height: 400,
+        marginLeft: "10%",
+    },
+    usercontainer: {
+        marginLeft: "10%",
+         width: 200,
+         borderColor: 'red',
+         alignItems: "center",
+         textAlign: 'center',
+     },
+      head: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
       },
 }));

@@ -24,20 +24,25 @@ import MuiAlert from '@material-ui/lab/Alert';
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
+function createData(name, score) {
+    return { name, score };
   }
+
+  const numbers = [1,2,3,4,5,6,7,8,9,10];
+
+
+
 const rows = [
-    createData('Player', 159, 6.0, 24, 4.0),
-    createData('Player', 237, 9.0, 37, 4.3),
-    createData('Player', 262, 16.0, 24, 6.0),
-    createData('Player', 305, 3.7, 67, 4.3),
-    createData('Player', 356, 16.0, 49, 3.9),
-    createData('Player', 159, 6.0, 24, 4.0),
-    createData('Player', 237, 9.0, 37, 4.3),
-    createData('Player', 262, 16.0, 24, 6.0),
-    createData('Player', 305, 3.7, 67, 4.3),
-    createData('Player', 356, 16.0, 49, 3.9),
+    createData( 'Player', 159),
+    createData( 'Player', 237),
+    createData( 'Player', 262),
+    createData( 'Player', 305),
+    createData( 'Player', 356),
+    createData('Player', 159),
+    createData( 'Player', 237),
+    createData('Player', 262),
+    createData('Player', 305),
+    createData('Player', 356),
   ];
 
 export default function Dashboard(props) {
@@ -126,28 +131,46 @@ export default function Dashboard(props) {
                     Login successful
                 </Alert>
             </Snackbar>
-
-            <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Top 10 Leaderboard</TableCell>
-            <TableCell align="center">Score</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="center">{row.calories}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
             
+                <TableContainer className={classes.usercontainer} component={Paper}>
+                    <Table className={classes.table} aria-label="simple table">
+                        <TableHead>
+                        <TableRow>
+                            <TableCell className={classes.head}>User</TableCell>
+                            <TableCell className={classes.head} align="center">Score</TableCell>
+                        </TableRow>
+                        </TableHead>
+                        <TableBody>
+                        <TableCell > User </TableCell>
+                        <TableCell > 1000 </TableCell>
+                        </TableBody>
+                    </Table>
+           
+                 </TableContainer> 
+                    <TableContainer className={classes.container} component={Paper}>
+                        <Table className={classes.table} aria-label="simple table">
+                            <TableHead>
+                            <TableRow>
+                                <TableCell className={classes.head}>Top 10 Leaderboard</TableCell>
+                                <TableCell className={classes.head} align="center">Score</TableCell>
+                            </TableRow>
+                            </TableHead>
+                            <TableBody>
+                            {rows.map((row) => (
+                                <TableRow key={row.name}>
+                                <TableCell component="th" scope="row">
+                                    {row.name} 
+                                </TableCell>
+                                <TableCell align="center">{row.score}</TableCell>
+                                </TableRow>
+                            ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                
+            
+            
+
         </div>
     );
 }

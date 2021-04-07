@@ -22,20 +22,14 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle'
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright ©BillTracker '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
 }
 
 const drawerWidth = 240;
@@ -189,8 +183,16 @@ export default function Profile() {
     const [deletePassword, setDeletePassword] = React.useState("");
     const [deletePasswordWrong, setDeletePasswordWrong] = React.useState(false);
     const [originalEmail, setOriginalEmail] = React.useState("");
+    const [radio, setRadio] = React.useState('');
 
     const timer = React.useRef();
+    
+    const [box, setBox] = React.useState({
+        Morning: false,
+        Afternoon: false,
+        Night: false,
+      });
+      const { Morning, Afternoon, Night } = box;
 
     const handleDeletePassChange = (event) => {
         setDeletePassword(event.target.value);
@@ -384,6 +386,14 @@ export default function Profile() {
 
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+    const handleRadioGroupChange = (event) => {
+        setRadio((event.target).value);
+      };
+
+      const handleCheckBtnChange = (event) => {
+        setBox({ ...box, [event.target.value]: event.target.checked });
+       };
+
     useEffect(() => {
         checkAuth();
         getUserInfo();
@@ -461,65 +471,76 @@ export default function Profile() {
                                     <TabPanel value={value} index={0}>
                                         <Typography className={classes.paperTitle}>Account Details</Typography>
                                         <Grid container spacing={2}>
-                                            <Grid item xs={12} sm={6}>
-                                                <FormControl id="firstname"
+                                            <Grid item xs={12} >
+                                                <FormControl id="Username"
                                                              fullWidth
-                                                             label="First Name"
+                                                             label="Username"
                                                              variant="outlined">
-                                                    <InputLabel htmlFor="outlined-adornment-firstname">First
-                                                        Name</InputLabel>
+                                                    <InputLabel  disabled={true} htmlFor="outlined-adornment-firstname">Username</InputLabel>
                                                     <OutlinedInput
+                                                    disabled={true}
                                                         id="outlined-adornment-firstname"
                                                         value={values.first_name}
-                                                        onChange={handleProfileChange('first_name')}
+                                                        onChange={handleProfileChange('first_name')
+                                                    }
                                                         labelWidth={80}
                                                     />
                                                 </FormControl>
                                             </Grid>
-                                            <Grid item xs={12} sm={6}>
-                                                <FormControl id="lastname"
-                                                             fullWidth
-                                                             label="Last Name"
-                                                             variant="outlined">
-                                                    <InputLabel htmlFor="outlined-adornment-lastname">Last
-                                                        Name</InputLabel>
-                                                    <OutlinedInput
-                                                        id="outlined-adornment-lastname"
-                                                        value={values.last_name}
-                                                        onChange={handleProfileChange('last_name')}
-                                                        labelWidth={80}
-                                                    />
-                                                </FormControl>
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                                <FormControl id="email"
-                                                             fullWidth
-                                                             label="Email"
-                                                             variant="outlined">
-                                                    <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
-                                                    <OutlinedInput
-                                                        id="outlined-adornment-email"
-                                                        value={values.email}
-                                                        onChange={handleProfileChange('email')}
-                                                        labelWidth={40}
-                                                    />
-                                                </FormControl>
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                                <FormControl id="phonenumber"
-                                                             fullWidth
-                                                             label="Phone Number"
-                                                             variant="outlined">
-                                                    <InputLabel htmlFor="outlined-adornment-firstname">Phone
-                                                        Number</InputLabel>
-                                                    <OutlinedInput
-                                                        id="outlined-adornment-firstname"
-                                                        value={values.phone_number}
-                                                        onChange={handleProfileChange('phone_number')}
-                                                        labelWidth={110}
-                                                    />
-                                                </FormControl>
-                                            </Grid>
+                                            <Typography variant='overline'>
+                                             Please select your Birthday:
+                                        </Typography>
+
+                                        <Grid item xs={12}>
+                                            <TextField
+                                            fullWidth
+                                            required
+                                                id="date"
+                                                label="Birthday"
+                                                type="date"
+                                                defaultValue="YYYY-MM-DD"
+                                                className={classes.textField}
+                                                InputLabelProps={{
+                                                shrink: true,
+                                                }}
+                                            />
+                                        </Grid>
+                                        <Typography variant='overline'>
+                                        Choose your skill level:
+                                </Typography>
+
+                                <Grid item xs={12}>
+                                <RadioGroup aria-label="day" name="days" value={radio} onChange={handleRadioGroupChange}>
+                                <FormControlLabel value="Beginner" control={<Radio />} label="Beginner" />
+                                <FormControlLabel value="Intermediate" control={<Radio />} label="Intermediate" />
+                                <FormControlLabel value="Advanced" control={<Radio />} label="Advanced" />
+                                </RadioGroup>
+                                </Grid>
+
+                                <Typography variant='overline'>
+                                        Choose when you are going to play:
+                                </Typography>
+
+                                <Grid item xs={12}>
+                                <FormControlLabel
+                                control={
+                                    <Checkbox checked={Morning} onChange={handleCheckBtnChange} value="Morning" />
+                                }
+                                label="Morning"
+                                />
+                                <FormControlLabel
+                                control={
+                                    <Checkbox checked={Afternoon} onChange={handleCheckBtnChange} value="Afternoon" />
+                                }
+                                label="Afternoon"
+                                />
+                                <FormControlLabel
+                                control={
+                                    <Checkbox checked={Night} onChange={handleCheckBtnChange} value="Night" />
+                                }
+                                label="Night"
+                                />
+                                </Grid>    
 
                                         </Grid>
                                         <Button className={classes.saveBtn} onClick={handleClick} variant="contained"
@@ -580,10 +601,6 @@ export default function Profile() {
                             </Paper>
                         </Grid>
                     </Grid>
-
-                    <Box pt={4}>
-                        <Copyright/>
-                    </Box>
                 </Container>
             </main>
         </div>
