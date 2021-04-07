@@ -56,5 +56,8 @@ export default makeStyles((theme) => ({
         fontSize: 24,
         color: "#2e4a66",
 
-    }
+    },
+    table: {
+        minWidth: 650,
+      },
 }));

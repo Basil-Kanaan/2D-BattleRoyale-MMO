@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Navbar() {
+export default function AppNavbar() {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const classes = useStyles();
