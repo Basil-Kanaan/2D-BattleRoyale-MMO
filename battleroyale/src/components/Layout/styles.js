@@ -9,10 +9,7 @@ export default makeStyles((theme) => ({
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
+        paddingTop: "100px",
         width: `calc(100vw - 240px)`,
-        minHeight: "100vh",
-    },
-    Title: {
-        padding: theme.spacing(5),
     },
 }));

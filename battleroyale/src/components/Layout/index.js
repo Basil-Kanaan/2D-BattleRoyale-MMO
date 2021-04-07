@@ -1,5 +1,4 @@
 import React from "react";
-import classnames from "classnames";
 
 import {Route, Switch,} from "react-router-dom";
 // styles
@@ -17,10 +16,7 @@ export default function Layout(props) {
     return (
         <div className={classes.root}>
             <NavBar/>
-            <div
-                className={classnames(classes.content)}
-            >
-                <div className={classes.Title}/>
+            <div className={classes.content}>
                 <Switch>
                     <Route path="/app/play" component={Play} exact/>
                     <Route path="/app/instructions" component={Instructions} exact/>

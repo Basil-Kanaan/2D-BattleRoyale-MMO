@@ -143,22 +143,7 @@ function SignIn(props) {
             formBody.push(encodedKey + "=" + encodedValue);
         }
         formBody = formBody.join("&");
-        // fetch('http://localhost:8000/api/user/login', {
-        //     method: 'POST',
-        //     body: formBody,
-        //     headers: {
-        //         "Content-Type": "application/x-www-form-urlencoded"
-        //     }
-        // }).then(response => response.json()).then(data => {
-        //     if (data.message) {
-        //         setOpen(true);
-        //     } else {
-        //         localStorage.setItem("token", data.jwtToken);
-        //         updateAuth(true);
-        //     }
-        // }).catch(err => {
-        //     setOpen(true);
-        // });
+
     };
 
 
