@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Navbar() {
+export default function AppNavbar() {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const classes = useStyles();
@@ -66,17 +66,37 @@ export default function Navbar() {
         setAnchorEl(null);
     };
 
+    const handlePlay = () => {
+        setAnchorEl(0);
+        window.location.href = '/#/app/play';
+    };
+
+    const handleInstructions = () => {
+        setAnchorEl(1);
+        window.location.href = '/#/app/instructions';
+    };
+
+    const handleStats = () => {
+        setAnchorEl(2);
+        window.location.href = '/#/app/stats';
+    };
+
     const handleProfile = () => {
-        setAnchorEl(null);
+        setAnchorEl(3);
         window.location.href = '/#/app/profile';
     };
 
     const handleLogout = () => {
-        setAnchorEl(null);
+        setAnchorEl(4);
         updateAuth(false);
         localStorage.removeItem("token");
         window.location.href = '/';
     };
+
+    // const tabHandler = (event, value) => {
+    //     this.setState({selectedTab: value});
+    // };
+
     return (
         <AppBar className={classes.app}>
             <Toolbar className={classes.nav}>
@@ -84,19 +104,11 @@ export default function Navbar() {
                     Battle Royale
                 </Typography>
                 <Tabs className={classes.tabs}>
-                    <Tab onClick={() => {
-                        window.location.href = '/#/app/play';
-                    }} label="Play" icon={<HomeIcon/>}/>
-                    <Tab onClick={() => {
-                        window.location.href = '/#/app/instructions';
-                    }} label="Instructions" icon={<FileCopyIcon/>}/>
-                    <Tab onClick={() => {
-                        window.location.href = '/#/app/stats';
-                    }} label="Stats" icon={<EqualizerIcon/>}/>
-                    <Tab onClick={() => {
-                        window.location.href = '/#/app/profile';
-                    }} label="Profile" icon={<PersonIcon/>}/>
-                    <Tab onClick={handleLogout} label="Logout" icon={<CompareArrowsIcon/>}/>
+                    <Tab value={0} index={0} onClick={handlePlay} label="Play" icon={<HomeIcon/>}/>
+                    <Tab value={1} index={1} onClick={handleInstructions} label="Instructions" icon={<FileCopyIcon/>}/>
+                    <Tab value={2} index={2} onClick={handleStats} label="Stats" icon={<EqualizerIcon/>}/>
+                    <Tab value={3} index={3} onClick={handleProfile} label="Profile" icon={<PersonIcon/>}/>
+                    <Tab value={4} index={4} onClick={handleLogout} label="Logout" icon={<CompareArrowsIcon/>}/>
 
                 </Tabs>
 

@@ -10,6 +10,8 @@ export default class Camera {
 
 		// the logical width and height of the stage
 		this.width = canvas.width;
+		console.log(canvas.width, canvas.height);
+		console.log(canvas.clientWidth, canvas.clientHeight);
 		this.height = canvas.height;
 
 		// create frame of reference

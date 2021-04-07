@@ -4,43 +4,23 @@ import World from './model/World.js';
 import AmmunitionFactory from './model/AmmunitionFactory.js';
 import AiFactory from './model/AiFactory.js';
 
-// pages + navbar elements
-var elements = {
-        "login": $("#ui_login"),
-        "play": $("#ui_play"),
-        "register": $('#ui_register'),
-        "instructions": $('#ui_instructions'),
-        "stats": $('#ui_stats'),
-        "profile": $('#ui_profile'),
-        "navbar": $('#navbar')
-};
-
-// navbar elements for setting active tab
-var navElements = {
-        "stats": document.getElementById("switchToStats"),
-        "instructions": document.getElementById("switchToInstructions"),
-        "profile": document.getElementById("switchToProfile"),
-        "play": document.getElementById("switchToPlay"),
-        "logout": document.getElementById("switchToLogout")
-};
 
 // init important game variables and credentials
-var world = null;
-var interval = null;
-var difficulty = "easy";
-var credentials = { "username": "", "password": "" };
+let world = null;
+let interval = null;
+let credentials = {"username": "", "password": ""};
 
-var speed = 22;
+const speed = 22;
 
 // movement map and velocity
-var moveMap = {
+const moveMap = {
         'a': new Pair(-1, 0),
         's': new Pair(0, 1),
         'd': new Pair(1, 0),
         'w': new Pair(0, -1)
 };
 
-var controls = {
+const controls = {
         'a': false,
         's': false,
         'd': false,
@@ -68,7 +48,7 @@ function setupGame() {
 // check buttons down for controls
 function keyDownListener(event){
         // switch to next weapon on spacebar
-        if (event.key == " ") { 
+        if (event.key === " ") {
                 if (world) world.player.nextWeapon(); 
         } else { 
                 // otherwise check move keys
@@ -537,28 +517,23 @@ $(function () {
         showElement("login");
 
         // form submit listeners
-        $("#loginSubmit").on('click', function () { login(); });
-        $("#registerSubmit").on('click', function () { register(); });
-        $("#profileSubmit").on('click', function () { changeProfile(); });
-        $("#deleteSubmit").on('click', function () { deleteProfile(); });
+        // $("#loginSubmit").on('click', function () { login(); });
+        // $("#registerSubmit").on('click', function () { register(); });
+        // $("#profileSubmit").on('click', function () { changeProfile(); });
+        // $("#deleteSubmit").on('click', function () { deleteProfile(); });
 
         // unauthed switch page buttons
-        $("#switchToRegister").on('click', function () { resetMessages(); hideAllElements(); showElement("register"); document.getElementById("errorMessage").innerHTML = ''; });
-        $("#switchToLogin").on('click', function () { resetMessages(); hideAllElements(); showElement("login"); });
+        // $("#switchToRegister").on('click', function () { resetMessages(); hideAllElements(); showElement("register"); document.getElementById("errorMessage").innerHTML = ''; });
+        // $("#switchToLogin").on('click', function () { resetMessages(); hideAllElements(); showElement("login"); });
 
         // authed switch page buttons
-        $("#switchToPlay").on('click', function () {  hideAllElements(); showElement("play"); showElement("navbar"); setActiveTab("play"); if (world && world.end){endGame(); setupGame();} startGame();});
-        $("#switchToInstructions").on('click', function () { hideAllElements(); showElement("instructions"); showElement("navbar"); setActiveTab("instructions"); pauseGame();});
-        $("#switchToStats").on('click', function () { hideAllElements(); showElement("stats"); showElement("navbar"); setActiveTab("stats"); pauseGame(); getHighscores(); getLeaderboard(); });
-        $("#switchToProfile").on('click', function () { resetMessages(); hideAllElements(); showElement("profile"); showElement("navbar"); setActiveTab("profile"); document.getElementById("profusername").innerHTML = credentials.username;  pauseGame();});
-        $("#switchToLogout").on('click', function () { resetMessages(); logout(); });
+        // $("#switchToPlay").on('click', function () {  hideAllElements(); showElement("play"); showElement("navbar"); setActiveTab("play"); if (world && world.end){endGame(); setupGame();} startGame();});
+        // $("#switchToInstructions").on('click', function () { hideAllElements(); showElement("instructions"); showElement("navbar"); setActiveTab("instructions"); pauseGame();});
+        // $("#switchToStats").on('click', function () { hideAllElements(); showElement("stats"); showElement("navbar"); setActiveTab("stats"); pauseGame(); getHighscores(); getLeaderboard(); });
+        // $("#switchToProfile").on('click', function () { resetMessages(); hideAllElements(); showElement("profile"); showElement("navbar"); setActiveTab("profile"); document.getElementById("profusername").innerHTML = credentials.username;  pauseGame();});
+        // $("#switchToLogout").on('click', function () { resetMessages(); logout(); });
 
         // restart game button 
         $("#restart").on('click', function () { $(this).blur(); endGame(); setupGame(); startGame(); });
-
-        // set game difficulty button
-        $("#easybtn").on('click', function () { difficulty="easy"; $(this).blur(); endGame(); setupGame(); startGame();});
-        $("#mediumbtn").on('click', function () { difficulty="medium"; $(this).blur(); endGame(); setupGame(); startGame();});
-        $("#hardbtn").on('click', function () { difficulty="hard"; $(this).blur(); endGame(); setupGame(); startGame();});
 });
 

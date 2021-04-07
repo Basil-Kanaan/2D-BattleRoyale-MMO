@@ -12,6 +12,16 @@ npm init -y
 
 npm install express
 npm install pg
+npm install react
+npm install react-dom
+npm install react-router-dom
+npm install react-scripts
+npm install @material-ui/core
+npm install @material-ui/icons
+npm install @material-ui/lab
+npm install formik
+npm install web-vitals
+npm install yup
 
 # check out the package.json now
 # check out node_modules

@@ -78,7 +78,7 @@ export default function Play(props) {
                 </Alert>
             </Snackbar>
 
-            <Game className={classes.gameView}/>
+            <Game className={classes.root}/>
         </div>
     );
 }
