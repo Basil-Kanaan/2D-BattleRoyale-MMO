@@ -7,14 +7,14 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import mainLogo from './form_icon.png';
 import { AuthContext } from '../../contexts/AuthContext';
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { green } from '@material-ui/core/colors';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 
 const validationSchema = yup.object({
     email: yup
@@ -241,7 +241,7 @@ function Landing() {
             <Grid container component="main" className={classes.root}>
                 {/*<CssBaseline/>*/}
                 <Grid item xs={12}>
-                    <AppBar position="static" className={classes.navbar}>
+                <AppBar position="static" className={classes.navbar}>
                         <Toolbar className={classes.navtitle}>
                             <Typography className={classes.hideBtn} onClick={() => {
                                 window.location.href = '/';
@@ -254,7 +254,6 @@ function Landing() {
                                     window.location.href = '/#/register';
                                 }}>Register</Button>
                             </div>
-
                         </Toolbar>
                     </AppBar>
                 </Grid>
