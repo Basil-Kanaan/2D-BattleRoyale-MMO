@@ -1,16 +1,26 @@
 import {makeStyles} from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
-    root:{
-        display: 'flex',
+
+    content: {
+        display: "flex",
+        flexDirection: "column",
+        flexGrow: 1,
     },
     gameView: {
-        height: "150px",
-        width: "300px",
-        border: "1px solid black",
-        position: "absolute",
-        left: "50%",
-        transform: "translate(-50%)",
-        flexGrow: 1
+        alignSelf: "center",
+        border: "1px solid black"
+    },
+    playAgain:{
+        marginTop: "20px",
+        display: "flex",
+        alignSelf: "center",
+        height: '40px',
+        width: "614px",
+        backgroundColor: "#E7DECD",
+        "&:hover": {
+            //you want this to be the same as the backgroundColor above
+            backgroundColor: "rgba(231,222,205,0.6)"
+        } ,
     }
 }));

@@ -7,6 +7,7 @@ import AiFactory from './model/AiFactory.js';
 
 // styles
 import useStyles from "./styles";
+import Button from "@material-ui/core/Button";
 // components
 
 // init important game variables and credentials
@@ -16,6 +17,8 @@ let difficulty = "medium";
 // let credentials = {"username": "", "password": ""};
 
 const speed = 22;
+
+let canvasRef = null;
 
 // movement map and velocity
 const moveMap = {
@@ -48,6 +51,18 @@ function setupGame(canvasRef) {
     document.addEventListener('keyup', stopKey, false);
     document.addEventListener('mousemove', aimListener, false);
     document.addEventListener('mousedown', clickListener, false);
+
+    // resize the canvas to fill browser window dynamically
+    document.getElementById("gameContent").addEventListener('resize', resizeCanvas, false);
+    resizeCanvas();
+}
+
+function resizeCanvas() {
+    canvasRef.current.width = document.getElementById("gameContent").clientWidth-100;
+    canvasRef.current.height = window.innerHeight - 170;
+
+    world.camera.width = canvasRef.current.width;
+    world.camera.height = canvasRef.current.height;
 }
 
 // add game interval loop
@@ -95,6 +110,8 @@ function endGame() {
     document.removeEventListener('keyup', stopKey, false);
     document.removeEventListener('mousemove', aimListener, false);
     document.removeEventListener('mousedown', clickListener, false);
+
+    document.getElementById("gameContent").removeEventListener('resize', resizeCanvas, false);
 
     // remove world and controls
     world = null;
@@ -162,18 +179,18 @@ function updateVelocity() {
 export default function Game(props) {
     var classes = useStyles();
 
-    const canvasRef = useRef(null);
+    canvasRef = useRef(null);
 
     useEffect(() => {
+        endGame();
         setupGame(canvasRef);
         startGame();
     }, []);
 
     return ( 
-        <div id="ui_play" className={classes.root}>
-            <canvas ref={canvasRef} id="stage" className={classes.gameView}/>
-            <button id="restart">Play Again</button>
-        </div>
-
+        <main className={classes.content} id={"gameContent"}>
+            <canvas ref={canvasRef} width={614} height={614} id="stage" className={classes.gameView}/>
+            <Button id="restart" className={classes.playAgain} onClick={() => {document.getElementById("restart").blur(); endGame(); setupGame(canvasRef); startGame();}}>Play Again</Button>
+        </main>
     );
 }

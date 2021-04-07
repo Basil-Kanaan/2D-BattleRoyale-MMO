@@ -127,45 +127,41 @@ export default function Stats(props) {
                 </Alert>
             </Snackbar>
             
-                <TableContainer className={classes.usercontainer} component={Paper}>
-                    <Table className={classes.table} aria-label="simple table">
-                        <TableHead>
-                        <TableRow>
-                            <TableCell className={classes.head}>User</TableCell>
-                            <TableCell className={classes.head} align="center">Score</TableCell>
-                        </TableRow>
-                        </TableHead>
-                        <TableBody>
-                        <TableCell > User </TableCell>
-                        <TableCell > 1000 </TableCell>
-                        </TableBody>
-                    </Table>
-           
-                 </TableContainer> 
-                    <TableContainer className={classes.container} component={Paper}>
-                        <Table className={classes.table} aria-label="simple table">
-                            <TableHead>
-                            <TableRow>
-                                <TableCell className={classes.head}>Top 10 Leaderboard</TableCell>
-                                <TableCell className={classes.head} align="center">Score</TableCell>
-                            </TableRow>
-                            </TableHead>
-                            <TableBody>
-                            {rows.map((row) => (
-                                <TableRow key={row.name}>
-                                <TableCell component="th" scope="row">
-                                    {row.name} 
-                                </TableCell>
-                                <TableCell align="center">{row.score}</TableCell>
-                                </TableRow>
-                            ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                
-            
-            
+            <TableContainer className={classes.usercontainer} component={Paper}>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                    <TableRow>
+                        <TableCell className={classes.head}>User</TableCell>
+                        <TableCell className={classes.head} align="center">Score</TableCell>
+                    </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    <TableCell > User </TableCell>
+                    <TableCell > 1000 </TableCell>
+                    </TableBody>
+                </Table>
 
+            </TableContainer>
+            <TableContainer className={classes.container} component={Paper}>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                    <TableRow>
+                        <TableCell className={classes.head}>Top 10 Leaderboard</TableCell>
+                        <TableCell className={classes.head} align="center">Score</TableCell>
+                    </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {rows.map((row) => (
+                        <TableRow key={row.name}>
+                        <TableCell component="th" scope="row">
+                            {row.name}
+                        </TableCell>
+                        <TableCell align="center">{row.score}</TableCell>
+                        </TableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     );
 }

@@ -67,7 +67,7 @@ export default function Play(props) {
     }, []);
 
     return (
-        <div className={classes.root}>
+        <div>
             <Snackbar anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
@@ -77,7 +77,7 @@ export default function Play(props) {
                 </Alert>
             </Snackbar>
 
-            <Game className={classes.game}/>
+            <Game/>
         </div>
     );
 }

@@ -134,7 +134,7 @@ export default class World {
 				if (j < columns / 2 && i < rows / 2) { context.fillStyle = purple; }
 				else if (j < columns / 2 && i >= rows / 2) { context.fillStyle = green; }
 				else if (j >= columns / 2 && i < rows / 2) { context.fillStyle = blue; }
-				else { context.fillStyle = yellow };
+				else { context.fillStyle = yellow; }
 
 				context.beginPath();
 				context.rect(x, y, square, square);
