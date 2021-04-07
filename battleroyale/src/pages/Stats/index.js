@@ -13,12 +13,8 @@ import {AuthContext} from '../../contexts/AuthContext';
 // styles
 import useStyles from "./styles";
 // components
-import Chart from "react-google-charts";
-
-import HelloImg from "../../assets/hello.svg";
 
 import Snackbar from '@material-ui/core/Snackbar';
-
 import MuiAlert from '@material-ui/lab/Alert';
 
 function Alert(props) {
@@ -28,7 +24,6 @@ function createData(name, score) {
     return { name, score };
   }
 
-  const numbers = [1,2,3,4,5,6,7,8,9,10];
 
 
 
@@ -45,7 +40,7 @@ const rows = [
     createData('Player', 356),
   ];
 
-export default function Dashboard(props) {
+export default function Stats(props) {
     var classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
     const [email, setEmail] = React.useState('');
@@ -88,7 +83,7 @@ export default function Dashboard(props) {
             setValue(data.firstName);
             setEmail(data.email);
             getBillStatus(data.email);
-           
+
         }).catch(err => {
             console.log("Error");
         });
