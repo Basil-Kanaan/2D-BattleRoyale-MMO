@@ -12,7 +12,6 @@ import useStyles from "./styles";
 // components
 
 import Snackbar from '@material-ui/core/Snackbar';
-
 import MuiAlert from '@material-ui/lab/Alert';
 
 function Alert(props) {
@@ -68,7 +67,7 @@ export default function Play(props) {
     }, []);
 
     return (
-        <div className={classes.cardGrid}>
+        <div className={classes.root}>
             <Snackbar anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
@@ -78,7 +77,7 @@ export default function Play(props) {
                 </Alert>
             </Snackbar>
 
-            <Game className={classes.root}/>
+            <Game className={classes.game}/>
         </div>
     );
 }
