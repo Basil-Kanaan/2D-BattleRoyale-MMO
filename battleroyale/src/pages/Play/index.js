@@ -19,7 +19,7 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-export default function Dashboard(props) {
+export default function Play(props) {
     var classes = useStyles();
     const [email, setEmail] = React.useState('');
     const [open, setOpen] = React.useState(false);
