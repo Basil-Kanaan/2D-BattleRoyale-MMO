@@ -4,6 +4,9 @@ import Paper from '@material-ui/core/Paper';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import {AuthContext} from '../../contexts/AuthContext';
+import Game from "../Game";
+
+
 // styles
 import useStyles from "./styles";
 // components
@@ -75,7 +78,7 @@ export default function Dashboard(props) {
                 </Alert>
             </Snackbar>
 
-            <canvas id="stage" className={classes.gameView}/>
+            <Game className={classes.gameView}/>
         </div>
     );
 }
