@@ -15,7 +15,7 @@ export default class Wall {
     }
 
     step() {
-        return;
+
     }
 
     draw(context, camera) {

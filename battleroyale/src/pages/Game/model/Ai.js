@@ -1,6 +1,5 @@
 import Ball from './Ball.js';
 import Pair from './Pair.js';
-import Bullet from './Bullet.js';
 
 // Ai class
 export default class Ai extends Ball {
@@ -32,7 +31,7 @@ export default class Ai extends Ball {
     drawTurret(context, camera) {
 
         var player = camera.world.player;
-        var rect = { x: this.x - camera.x, y: this.y - camera.y, width: this.radius * 2, height: this.radius / 20 * 15 };
+        var rect = {x: this.x - camera.x, y: this.y - camera.y, width: this.radius * 2, height: this.radius / 20 * 15};
 
         var angle = Math.atan2((player.y - camera.y) - rect.y, (player.x - camera.x) - rect.x) * 180 / Math.PI + 180;
 
@@ -54,19 +53,19 @@ export default class Ai extends Ball {
 
         switch (this.condition) {
             case "fast":
-                this.modified_velocity.mult(1.2)
+                this.modified_velocity.mult(1.2);
                 break;
             case "slowed":
-                this.modified_velocity.mult(0.8)
+                this.modified_velocity.mult(0.8);
                 break;
         }
 
         switch (this.type) {
             case "spray":
-                this.modified_velocity.mult(1.3)
+                this.modified_velocity.mult(1.3);
                 break;
             case "boss":
-                this.modified_velocity.mult(0.9)
+                this.modified_velocity.mult(0.9);
                 break;
         }
 

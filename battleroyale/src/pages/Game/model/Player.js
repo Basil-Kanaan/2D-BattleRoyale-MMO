@@ -8,7 +8,7 @@ export default class Player extends Ball {
 
         this.health = health;
         this.turret_position = new Pair(0, 0);
-        this.ammo = { "pistol": 10, "railgun": 5, "cannon": 1 };
+        this.ammo = {"pistol": 10, "railgun": 5, "cannon": 1};
         this.score = 0;
 
         this.weapon = "pistol";
@@ -62,7 +62,7 @@ export default class Player extends Ball {
 
     drawTurret(context, camera) {
 
-        var rect = { x: this.x - camera.x, y: this.y - camera.y, width: this.radius * 2, height: 15 };
+        var rect = {x: this.x - camera.x, y: this.y - camera.y, width: this.radius * 2, height: 15};
 
         var canvasMouse = camera.getMousePos(camera.world.mouse);
         var angle = Math.atan2(canvasMouse.y - rect.y, canvasMouse.x - rect.x) * 180 / Math.PI + 180;
@@ -86,10 +86,10 @@ export default class Player extends Ball {
 
         switch (this.condition) {
             case "fast":
-                this.modified_velocity.mult(1.2)
+                this.modified_velocity.mult(1.2);
                 break;
             case "slowed":
-                this.modified_velocity.mult(0.8)
+                this.modified_velocity.mult(0.8);
                 break;
         }
 

@@ -1,15 +1,14 @@
 import React, {useContext, useEffect} from "react";
-import {Button, Grid} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import Paper from '@material-ui/core/Paper';
-import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import {AuthContext} from '../../contexts/AuthContext';
 // styles
 import useStyles from "./styles";
-// components
-
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+
+// components
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -75,11 +74,11 @@ export default function Instructions(props) {
                     Login successful
                 </Alert>
             </Snackbar>
-            <Grid >
+            <Grid>
                 <Grid xs={12}>
                     <Paper className={classes.card} variant="outlined">
-                       <Typography className={classes.cardTitle} variant="h6" size="small">Instructions</Typography>
-                        
+                        <Typography className={classes.cardTitle} variant="h6" size="small">Instructions</Typography>
+
                         <ul>
                             <li>
                                 Use WASD to move the player
@@ -131,8 +130,8 @@ export default function Instructions(props) {
                         </ul>
                     </Paper>
                 </Grid>
-                
-                
+
+
             </Grid>
         </div>
     );

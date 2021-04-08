@@ -2,8 +2,13 @@ import Pair from './Pair.js';
 import Ammo from './Ammo.js';
 import Bullet from './Bullet.js';
 
-function randint(n) { return Math.round(Math.random() * n); }
-function rand(n) { return Math.random() * n; }
+function randint(n) {
+    return Math.round(Math.random() * n);
+}
+
+function rand(n) {
+    return Math.random() * n;
+}
 
 // creates a bullet or ammo based on guntype 
 export default class AmmunitionFactory {

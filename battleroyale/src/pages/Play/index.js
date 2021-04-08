@@ -1,18 +1,12 @@
 import React, {useContext, useEffect} from "react";
-import {Button, Grid} from "@material-ui/core";
-import Paper from '@material-ui/core/Paper';
-import CardActions from '@material-ui/core/CardActions';
-import Typography from '@material-ui/core/Typography';
 import {AuthContext} from '../../contexts/AuthContext';
 import Game from "../Game";
-
-
 // styles
 import useStyles from "./styles";
-// components
-
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+
+// components
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;

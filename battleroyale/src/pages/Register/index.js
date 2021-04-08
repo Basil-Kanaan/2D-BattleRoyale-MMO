@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Typography from '../../components/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Paper } from '@material-ui/core'
-import { useFormik } from 'formik';
+import {Paper} from '@material-ui/core'
+import {useFormik} from 'formik';
 import * as yup from 'yup';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
@@ -16,9 +15,9 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { AuthContext } from "../../contexts/AuthContext";
+import {AuthContext} from "../../contexts/AuthContext";
 import CircularProgress from '@material-ui/core/CircularProgress'
-import { green } from '@material-ui/core/colors';
+import {green} from '@material-ui/core/colors';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -108,30 +107,29 @@ function SignUp(props) {
     const timer = React.useRef();
     const [loading, setLoading] = React.useState(false);
     const [open, setOpen] = React.useState(false);
-    const { updateAuth, updateToken } = useContext(AuthContext);
+    const {updateAuth, updateToken} = useContext(AuthContext);
     const [confirmPass, setConfirmPass] = React.useState(false);
-    const [values, setValues] = React.useState({ showPassword: false, });
+    const [values, setValues] = React.useState({showPassword: false,});
     const [value, setValue] = React.useState('');
-   
+
     const [box, setBox] = React.useState({
         Morning: false,
         Afternoon: false,
         Night: false,
-      });
-      const { Morning, Afternoon, Night } = box;
+    });
+    const {Morning, Afternoon, Night} = box;
 
     const handleRadioGroupChange = (event) => {
         setValue((event.target).value);
-      };
+    };
 
-      const handleCheckBtnChange = (event) => {
-        setBox({ ...box, [event.target.value]: event.target.checked });
-       };
-       
+    const handleCheckBtnChange = (event) => {
+        setBox({...box, [event.target.value]: event.target.checked});
+    };
 
 
     const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
+        setValues({...values, showPassword: !values.showPassword});
     };
 
     const handleMouseDownPassword = (event) => {
@@ -192,20 +190,20 @@ function SignUp(props) {
     return (
         <div>
             <AppBar position="static" className={classes.navbar}>
-                        <Toolbar className={classes.navtitle}>
-                            <Typography className={classes.hideBtn} onClick={() => {
-                                window.location.href = '/';
-                            }} variant="h6">Battle Royale</Typography>
-                            <div className={classes.navbuttons}>
-                            <Button color="inherit" onClick={() => {
+                <Toolbar className={classes.navtitle}>
+                    <Typography className={classes.hideBtn} onClick={() => {
+                        window.location.href = '/';
+                    }} variant="h6">Battle Royale</Typography>
+                    <div className={classes.navbuttons}>
+                        <Button color="inherit" onClick={() => {
                             window.location.href = '/#/#About';
                         }}> About </Button>
-                                <Button color="inherit" onClick={() => {
-                                    window.location.href = '/#/register';
-                                }}>Register</Button>
-                            </div>
-                        </Toolbar>
-                    </AppBar>
+                        <Button color="inherit" onClick={() => {
+                            window.location.href = '/#/register';
+                        }}>Register</Button>
+                    </div>
+                </Toolbar>
+            </AppBar>
             <Container component="main" maxWidth="sm">
                 <Paper variant="outlined" square className={classes.bgPaper}>
                     <div className={classes.paper}>
@@ -253,7 +251,7 @@ function SignUp(props) {
                                                         onMouseDown={handleMouseDownPassword}
                                                         edge="end"
                                                     >
-                                                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                                        {values.showPassword ? <Visibility/> : <VisibilityOff/>}
                                                     </IconButton>
                                                 </InputAdornment>
                                             )
@@ -278,68 +276,71 @@ function SignUp(props) {
                                 </Grid>
 
                                 <Typography variant='overline'>
-                                        Please select your Birthday:
+                                    Please select your Birthday:
                                 </Typography>
 
                                 <Grid item xs={12}>
-                                     <TextField
-                                     fullWidth
-                                     required
+                                    <TextField
+                                        fullWidth
+                                        required
                                         id="date"
                                         label="Birthday"
                                         type="date"
                                         defaultValue="YYYY-MM-DD"
                                         className={classes.textField}
                                         InputLabelProps={{
-                                        shrink: true,
+                                            shrink: true,
                                         }}
                                     />
                                 </Grid>
-                               
+
                                 <Typography variant='overline'>
-                                        Choose your skill level:
+                                    Choose your skill level:
                                 </Typography>
 
                                 <Grid item xs={12}>
-                                <RadioGroup aria-label="day" name="days" value={value} onChange={handleRadioGroupChange}>
-                                <FormControlLabel value="Beginner" control={<Radio />} label="Beginner" />
-                                <FormControlLabel value="Intermediate" control={<Radio />} label="Intermediate" />
-                                <FormControlLabel value="Advanced" control={<Radio />} label="Advanced" />
-                                </RadioGroup>
+                                    <RadioGroup aria-label="day" name="days" value={value}
+                                                onChange={handleRadioGroupChange}>
+                                        <FormControlLabel value="Beginner" control={<Radio/>} label="Beginner"/>
+                                        <FormControlLabel value="Intermediate" control={<Radio/>} label="Intermediate"/>
+                                        <FormControlLabel value="Advanced" control={<Radio/>} label="Advanced"/>
+                                    </RadioGroup>
                                 </Grid>
 
                                 <Typography variant='overline'>
-                                        Choose when you are going to play:
+                                    Choose when you are going to play:
                                 </Typography>
 
                                 <Grid item xs={12}>
-                                <FormControlLabel
-                                control={
-                                    <Checkbox checked={Morning} onChange={handleCheckBtnChange} value="Morning" />
-                                }
-                                label="Morning"
-                                />
-                                <FormControlLabel
-                                control={
-                                    <Checkbox checked={Afternoon} onChange={handleCheckBtnChange} value="Afternoon" />
-                                }
-                                label="Afternoon"
-                                />
-                                <FormControlLabel
-                                control={
-                                    <Checkbox checked={Night} onChange={handleCheckBtnChange} value="Night" />
-                                }
-                                label="Night"
-                                />
-                                </Grid>  
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox checked={Morning} onChange={handleCheckBtnChange}
+                                                      value="Morning"/>
+                                        }
+                                        label="Morning"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox checked={Afternoon} onChange={handleCheckBtnChange}
+                                                      value="Afternoon"/>
+                                        }
+                                        label="Afternoon"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox checked={Night} onChange={handleCheckBtnChange} value="Night"/>
+                                        }
+                                        label="Night"
+                                    />
+                                </Grid>
 
                             </Grid>
                             <div className={classes.wrapper}>
                                 <Button fullWidth variant="contained" type="submit"
-                                    className={classes.submit} disabled={loading}>
+                                        className={classes.submit} disabled={loading}>
                                     {loading ? "" : "Register"}
                                 </Button>
-                                {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+                                {loading && <CircularProgress size={24} className={classes.buttonProgress}/>}
                             </div>
                             <Grid container justify="center">
                                 <Grid item>
@@ -350,7 +351,7 @@ function SignUp(props) {
                             </Grid>
                         </form>
                     </div>
-            
+
                 </Paper>
             </Container>
         </div>

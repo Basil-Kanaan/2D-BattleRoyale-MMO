@@ -14,17 +14,17 @@ export default makeStyles((theme) => ({
         borderRadius: 5,
         boxShadow: '5px 5px 13px #ededed, -5px -5px 13px #ffffff;',
     },
-   
+
     table: {
         width: 200,
         borderColor: 'red',
-      },
+    },
     container: {
-       marginLeft: "80%",
+        marginLeft: "80%",
         width: 200,
         alignItems: "center",
         textAlign: 'center',
-        borderColor: 'red', 
+        borderColor: 'red',
     },
     cont1: {
         marginRight: "10%",
@@ -36,13 +36,13 @@ export default makeStyles((theme) => ({
     },
     usercontainer: {
         marginLeft: "10%",
-         width: 200,
-         borderColor: 'red',
-         alignItems: "center",
-         textAlign: 'center',
-     },
-      head: {
+        width: 200,
+        borderColor: 'red',
+        alignItems: "center",
+        textAlign: 'center',
+    },
+    head: {
         backgroundColor: theme.palette.common.black,
         color: theme.palette.common.white,
-      },
+    },
 }));

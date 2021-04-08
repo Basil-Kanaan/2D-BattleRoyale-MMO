@@ -1,7 +1,9 @@
 import Ball from './Ball.js';
 import Pair from './Pair.js';
 
-function randint(n) { return Math.round(Math.random() * n); }
+function randint(n) {
+    return Math.round(Math.random() * n);
+}
 
 // ammo that gives bullets to player
 export default class Ammo extends Ball {

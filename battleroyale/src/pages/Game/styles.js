@@ -11,7 +11,7 @@ export default makeStyles((theme) => ({
         alignSelf: "center",
         border: "1px solid black"
     },
-    playAgain:{
+    playAgain: {
         marginTop: "20px",
         display: "flex",
         alignSelf: "center",
@@ -21,6 +21,6 @@ export default makeStyles((theme) => ({
         "&:hover": {
             //you want this to be the same as the backgroundColor above
             backgroundColor: "rgba(231,222,205,0.6)"
-        } ,
+        },
     }
 }));

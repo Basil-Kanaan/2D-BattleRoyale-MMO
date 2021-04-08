@@ -1,23 +1,20 @@
-import Ball from './Ball.js';
-import Pair from './Pair.js';
-
 // Collision handler class for all collision calculations
 // also takes care of score multiplier and being "more hurt" based on terrain
 export default class CollisionHandler {
     constructor(difficulty) {
 
         // depending on difficulty, increase score multiplier
-        switch(difficulty){
-			case "easy":
-				this.scoremult=1;
-				break;
-			case "medium":
-                this.scoremult=2;
-				break;
-			case "hard":
-                this.scoremult=4;
-				break;
-		}
+        switch (difficulty) {
+            case "easy":
+                this.scoremult = 1;
+                break;
+            case "medium":
+                this.scoremult = 2;
+                break;
+            case "hard":
+                this.scoremult = 4;
+                break;
+        }
 
         this.isCollision = {
 
@@ -142,7 +139,7 @@ export default class CollisionHandler {
                     if (obj2.condition == "hurt") {
                         obj2.health -= bullet.damage;
                     }
-                    
+
                     obj2.health -= bullet.damage;
                     this.world.removeActor(bullet);
 
@@ -152,7 +149,7 @@ export default class CollisionHandler {
                             clearInterval(obj2.interval);
                             obj2.interval = null;
                             this.world.generateAi(1, obj2.type);
-                            bullet.shooter.score += 1000*this.scoremult;
+                            bullet.shooter.score += 1000 * this.scoremult;
                         } else {
                             this.world.end = true;
                         }

@@ -1,7 +1,4 @@
 import React, {useContext, useEffect} from "react";
-import {Button, Grid} from "@material-ui/core";
-import CardActions from '@material-ui/core/CardActions';
-import Typography from '@material-ui/core/Typography';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -12,33 +9,32 @@ import Paper from '@material-ui/core/Paper';
 import {AuthContext} from '../../contexts/AuthContext';
 // styles
 import useStyles from "./styles";
-// components
-
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+
+// components
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
+
 function createData(name, score) {
-    return { name, score };
-  }
-
-
+    return {name, score};
+}
 
 
 const rows = [
-    createData( 'Player', 159),
-    createData( 'Player', 237),
-    createData( 'Player', 262),
-    createData( 'Player', 305),
-    createData( 'Player', 356),
     createData('Player', 159),
-    createData( 'Player', 237),
+    createData('Player', 237),
     createData('Player', 262),
     createData('Player', 305),
     createData('Player', 356),
-  ];
+    createData('Player', 159),
+    createData('Player', 237),
+    createData('Player', 262),
+    createData('Player', 305),
+    createData('Player', 356),
+];
 
 export default function Stats(props) {
     var classes = useStyles();
@@ -126,18 +122,18 @@ export default function Stats(props) {
                     Login successful
                 </Alert>
             </Snackbar>
-            
+
             <TableContainer className={classes.usercontainer} component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
-                    <TableRow>
-                        <TableCell className={classes.head}>User</TableCell>
-                        <TableCell className={classes.head} align="center">Score</TableCell>
-                    </TableRow>
+                        <TableRow>
+                            <TableCell className={classes.head}>User</TableCell>
+                            <TableCell className={classes.head} align="center">Score</TableCell>
+                        </TableRow>
                     </TableHead>
                     <TableBody>
-                    <TableCell > User </TableCell>
-                    <TableCell > 1000 </TableCell>
+                        <TableCell> User </TableCell>
+                        <TableCell> 1000 </TableCell>
                     </TableBody>
                 </Table>
 
@@ -145,20 +141,20 @@ export default function Stats(props) {
             <TableContainer className={classes.container} component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
-                    <TableRow>
-                        <TableCell className={classes.head}>Top 10 Leaderboard</TableCell>
-                        <TableCell className={classes.head} align="center">Score</TableCell>
-                    </TableRow>
+                        <TableRow>
+                            <TableCell className={classes.head}>Top 10 Leaderboard</TableCell>
+                            <TableCell className={classes.head} align="center">Score</TableCell>
+                        </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row) => (
-                        <TableRow key={row.name}>
-                        <TableCell component="th" scope="row">
-                            {row.name}
-                        </TableCell>
-                        <TableCell align="center">{row.score}</TableCell>
-                        </TableRow>
-                    ))}
+                        {rows.map((row) => (
+                            <TableRow key={row.name}>
+                                <TableCell component="th" scope="row">
+                                    {row.name}
+                                </TableCell>
+                                <TableCell align="center">{row.score}</TableCell>
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer>

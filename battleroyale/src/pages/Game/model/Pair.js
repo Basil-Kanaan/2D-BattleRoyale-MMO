@@ -1,7 +1,8 @@
 // pair represents positions, velocities, etc
 export default class Pair {
     constructor(x, y) {
-        this.x = x; this.y = y;
+        this.x = x;
+        this.y = y;
     }
 
     add(pair) {
@@ -32,7 +33,9 @@ export default class Pair {
 
     normalize() {
         var magnitude = Math.sqrt(this.x * this.x + this.y * this.y);
-        if (magnitude == 0) { return this; }
+        if (magnitude == 0) {
+            return this;
+        }
         this.x = this.x / magnitude;
         this.y = this.y / magnitude;
         return this;

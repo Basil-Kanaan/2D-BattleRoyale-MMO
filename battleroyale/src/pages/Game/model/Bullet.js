@@ -1,5 +1,4 @@
 import Ball from './Ball.js';
-import Pair from './Pair.js';
 
 // bullet class 
 export default class Bullet extends Ball {

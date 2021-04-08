@@ -186,13 +186,13 @@ export default function Profile() {
     const [radio, setRadio] = React.useState('');
 
     const timer = React.useRef();
-    
+
     const [box, setBox] = React.useState({
         Morning: false,
         Afternoon: false,
         Night: false,
-      });
-      const { Morning, Afternoon, Night } = box;
+    });
+    const {Morning, Afternoon, Night} = box;
 
     const handleDeletePassChange = (event) => {
         setDeletePassword(event.target.value);
@@ -388,11 +388,11 @@ export default function Profile() {
 
     const handleRadioGroupChange = (event) => {
         setRadio((event.target).value);
-      };
+    };
 
-      const handleCheckBtnChange = (event) => {
-        setBox({ ...box, [event.target.value]: event.target.checked });
-       };
+    const handleCheckBtnChange = (event) => {
+        setBox({...box, [event.target.value]: event.target.checked});
+    };
 
     useEffect(() => {
         checkAuth();
@@ -471,76 +471,84 @@ export default function Profile() {
                                     <TabPanel value={value} index={0}>
                                         <Typography className={classes.paperTitle}>Account Details</Typography>
                                         <Grid container spacing={2}>
-                                            <Grid item xs={12} >
+                                            <Grid item xs={12}>
                                                 <FormControl id="Username"
                                                              fullWidth
                                                              label="Username"
                                                              variant="outlined">
-                                                    <InputLabel  disabled={true} htmlFor="outlined-adornment-firstname">Username</InputLabel>
+                                                    <InputLabel disabled={true}
+                                                                htmlFor="outlined-adornment-firstname">Username</InputLabel>
                                                     <OutlinedInput
-                                                    disabled={true}
+                                                        disabled={true}
                                                         id="outlined-adornment-firstname"
                                                         value={values.first_name}
                                                         onChange={handleProfileChange('first_name')
-                                                    }
+                                                        }
                                                         labelWidth={80}
                                                     />
                                                 </FormControl>
                                             </Grid>
                                             <Typography variant='overline'>
-                                             Please select your Birthday:
-                                        </Typography>
+                                                Please select your Birthday:
+                                            </Typography>
 
-                                        <Grid item xs={12}>
-                                            <TextField
-                                            fullWidth
-                                            required
-                                                id="date"
-                                                label="Birthday"
-                                                type="date"
-                                                defaultValue="YYYY-MM-DD"
-                                                className={classes.textField}
-                                                InputLabelProps={{
-                                                shrink: true,
-                                                }}
-                                            />
-                                        </Grid>
-                                        <Typography variant='overline'>
-                                        Choose your skill level:
-                                </Typography>
+                                            <Grid item xs={12}>
+                                                <TextField
+                                                    fullWidth
+                                                    required
+                                                    id="date"
+                                                    label="Birthday"
+                                                    type="date"
+                                                    defaultValue="YYYY-MM-DD"
+                                                    className={classes.textField}
+                                                    InputLabelProps={{
+                                                        shrink: true,
+                                                    }}
+                                                />
+                                            </Grid>
+                                            <Typography variant='overline'>
+                                                Choose your skill level:
+                                            </Typography>
 
-                                <Grid item xs={12}>
-                                <RadioGroup aria-label="day" name="days" value={radio} onChange={handleRadioGroupChange}>
-                                <FormControlLabel value="Beginner" control={<Radio />} label="Beginner" />
-                                <FormControlLabel value="Intermediate" control={<Radio />} label="Intermediate" />
-                                <FormControlLabel value="Advanced" control={<Radio />} label="Advanced" />
-                                </RadioGroup>
-                                </Grid>
+                                            <Grid item xs={12}>
+                                                <RadioGroup aria-label="day" name="days" value={radio}
+                                                            onChange={handleRadioGroupChange}>
+                                                    <FormControlLabel value="Beginner" control={<Radio/>}
+                                                                      label="Beginner"/>
+                                                    <FormControlLabel value="Intermediate" control={<Radio/>}
+                                                                      label="Intermediate"/>
+                                                    <FormControlLabel value="Advanced" control={<Radio/>}
+                                                                      label="Advanced"/>
+                                                </RadioGroup>
+                                            </Grid>
 
-                                <Typography variant='overline'>
-                                        Choose when you are going to play:
-                                </Typography>
+                                            <Typography variant='overline'>
+                                                Choose when you are going to play:
+                                            </Typography>
 
-                                <Grid item xs={12}>
-                                <FormControlLabel
-                                control={
-                                    <Checkbox checked={Morning} onChange={handleCheckBtnChange} value="Morning" />
-                                }
-                                label="Morning"
-                                />
-                                <FormControlLabel
-                                control={
-                                    <Checkbox checked={Afternoon} onChange={handleCheckBtnChange} value="Afternoon" />
-                                }
-                                label="Afternoon"
-                                />
-                                <FormControlLabel
-                                control={
-                                    <Checkbox checked={Night} onChange={handleCheckBtnChange} value="Night" />
-                                }
-                                label="Night"
-                                />
-                                </Grid>    
+                                            <Grid item xs={12}>
+                                                <FormControlLabel
+                                                    control={
+                                                        <Checkbox checked={Morning} onChange={handleCheckBtnChange}
+                                                                  value="Morning"/>
+                                                    }
+                                                    label="Morning"
+                                                />
+                                                <FormControlLabel
+                                                    control={
+                                                        <Checkbox checked={Afternoon} onChange={handleCheckBtnChange}
+                                                                  value="Afternoon"/>
+                                                    }
+                                                    label="Afternoon"
+                                                />
+                                                <FormControlLabel
+                                                    control={
+                                                        <Checkbox checked={Night} onChange={handleCheckBtnChange}
+                                                                  value="Night"/>
+                                                    }
+                                                    label="Night"
+                                                />
+                                            </Grid>
 
                                         </Grid>
                                         <Button className={classes.saveBtn} onClick={handleClick} variant="contained"

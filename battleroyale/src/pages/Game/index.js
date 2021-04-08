@@ -4,7 +4,6 @@ import Pair from './model/Pair.js';
 import World from './model/World.js';
 import AmmunitionFactory from './model/AmmunitionFactory.js';
 import AiFactory from './model/AiFactory.js';
-
 // styles
 import useStyles from "./styles";
 import Button from "@material-ui/core/Button";
@@ -58,7 +57,7 @@ function setupGame(canvasRef) {
 }
 
 function resizeCanvas() {
-    canvasRef.current.width = document.getElementById("gameContent").clientWidth-100;
+    canvasRef.current.width = document.getElementById("gameContent").clientWidth - 100;
     canvasRef.current.height = window.innerHeight - 170;
 
     world.camera.width = canvasRef.current.width;
@@ -68,7 +67,9 @@ function resizeCanvas() {
 // add game interval loop
 function startGame() {
     interval = setInterval(function () {
-        if (!world){return;}
+        if (!world) {
+            return;
+        }
         world.step();
         world.camera.draw();
         if (world.end) {
@@ -126,7 +127,7 @@ function endGame() {
 }
 
 // check buttons down for controls
-function keyDownListener(event){
+function keyDownListener(event) {
     // switch to next weapon on spacebar
     if (event.key === " ") {
         if (world) world.player.nextWeapon();
@@ -137,12 +138,12 @@ function keyDownListener(event){
 }
 
 // updates mouse pos in world
-function aimListener(event){
+function aimListener(event) {
     if (world) world.updateMouse(event);
 }
 
 // shoot on click
-function clickListener(event){
+function clickListener(event) {
     if (world) world.playerShoot(event);
 }
 
@@ -154,7 +155,7 @@ function stopKey(event) {
 
 // set control pressed to true
 function moveKey(event) {
-    if (event.key in controls){
+    if (event.key in controls) {
         controls[event.key] = true;
     }
     updateVelocity();
@@ -187,10 +188,15 @@ export default function Game(props) {
         startGame();
     }, []);
 
-    return ( 
+    return (
         <main className={classes.content} id={"gameContent"}>
             <canvas ref={canvasRef} width={614} height={614} id="stage" className={classes.gameView}/>
-            <Button id="restart" className={classes.playAgain} onClick={() => {document.getElementById("restart").blur(); endGame(); setupGame(canvasRef); startGame();}}>Play Again</Button>
+            <Button id="restart" className={classes.playAgain} onClick={() => {
+                document.getElementById("restart").blur();
+                endGame();
+                setupGame(canvasRef);
+                startGame();
+            }}>Play Again</Button>
         </main>
     );
 }
