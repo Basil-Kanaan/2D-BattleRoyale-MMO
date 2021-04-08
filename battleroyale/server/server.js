@@ -1,23 +1,22 @@
 // External libraries import
-const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require("cors");
 
 // Routes import
-const user = require('./routes.js');
+const routes = require('./routes.js');
 
 // Create main express app
 const app = express();
 
-var webSocketPort = 3001;
+const webSocketPort = 3001;
 
 // Web Sockets
-var WebSocketServer = require('ws').Server
-    ,wss = new WebSocketServer({port: webSocketPort});
+const WebSocketServer = require('ws').Server;
+const wss = new WebSocketServer({port: webSocketPort});
 
-var messages=[];
+let messages=[];
 
 wss.on('close', function() {
     console.log('disconnected');
@@ -33,7 +32,7 @@ wss.broadcast = function(message){
 };
 
 wss.on('connection', function(ws) {
-    var i;
+    let i;
     for(i=0;i<messages.length;i++){
         ws.send(messages[i]);
     }
@@ -53,7 +52,7 @@ app.set('views', path.join(__dirname, '../src'));
 app.use(express.static(path.join(__dirname, '../src')));
 
 app.use(cors());
-app.use('/', user);
+app.use('/', routes);
 
 module.exports = app;
 

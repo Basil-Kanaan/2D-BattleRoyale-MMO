@@ -2,7 +2,6 @@ import React, {useContext, useEffect} from "react";
 import {Redirect, Route, Switch} from 'react-router-dom';
 // components
 import Layout from "./components/Layout";
-import Login from "./pages/Login";
 import Landing from './pages/Landing';
 import Register from './pages/Register';
 

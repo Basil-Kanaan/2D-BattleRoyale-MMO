@@ -22,6 +22,7 @@ npm install @material-ui/lab
 npm install formik
 npm install web-vitals
 npm install yup
+npm install ws
 
 # check out the package.json now
 # check out node_modules
