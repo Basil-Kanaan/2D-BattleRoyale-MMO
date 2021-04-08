@@ -42,8 +42,6 @@ export default function Play(props) {
             if (data !== true) {
                 window.location.href = "/";
             }
-        }).catch(err => {
-            console.log("Error");
         });
     };
 
@@ -56,14 +54,12 @@ export default function Play(props) {
             }
         }).then(response => response.json()).then(data => {
             setEmail(data.email);
-        }).catch(err => {
-            console.log("Error");
         });
     };
 
     useEffect(() => {
-        getUserInfo();
-        checkAuth();
+        // getUserInfo();
+        // checkAuth();
     }, []);
 
     return (
