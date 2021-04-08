@@ -20,7 +20,7 @@ var AiSpeed = 12;
 
 // Model! World
 export default class World {
-    constructor(collisionHandler, ammunitionFactory, aiFactory, difficulty, canvas) {
+    constructor(collisionHandler, ammunitionFactory, aiFactory, difficulty) {
 
         var normalAi, sprayAi, bossAi;
 
@@ -62,10 +62,6 @@ export default class World {
         this.width = 5000;
         this.height = 5000;
 
-        //game canvas
-        this.canvas = canvas;
-        this.context = this.canvas.getContext("2d");
-
         // generate game objects and map
         this.actors = []; // all actors on this stage (monsters, player, boxes, ...)
         this.generateMap();
@@ -77,12 +73,6 @@ export default class World {
         this.generateAi(bossAi, "boss");
         this.generateBoundaries();
         this.generateObstacles();
-
-        // create new player and add to world
-        this.spawnPlayer();
-
-        // create new camera
-        this.camera = new Camera(canvas, this.player, this);
     }
 
     // update mouse position

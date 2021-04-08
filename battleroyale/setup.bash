@@ -23,6 +23,7 @@ npm install formik
 npm install web-vitals
 npm install yup
 npm install ws
+npm install websocket
 
 # check out the package.json now
 # check out node_modules

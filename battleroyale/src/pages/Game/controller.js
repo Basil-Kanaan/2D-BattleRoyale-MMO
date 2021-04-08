@@ -1,8 +1,10 @@
-import CollisionHandler from './model/CollisionHandler.js';
-import Pair from './model/Pair.js';
-import World from './model/World.js';
-import AmmunitionFactory from './model/AmmunitionFactory.js';
-import AiFactory from './model/AiFactory.js';
+/*
+
+import CollisionHandler from '../../../model/CollisionHandler.js';
+import Pair from '../../../model/Pair.js';
+import World from '../../../model/World.js';
+import AmmunitionFactory from '../../../model/AmmunitionFactory.js';
+import AiFactory from '../../../model/AiFactory.js';
 
 
 // init important game variables and credentials
@@ -530,4 +532,4 @@ $(function () {
         startGame();
     });
 });
-
+*/

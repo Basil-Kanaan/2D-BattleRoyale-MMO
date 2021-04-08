@@ -15,8 +15,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "web-vitals": "^1.1.1",
-    "yup": "^0.32.9",
-    "ws": "latest"
+    "websocket": "^1.0.33",
+    "ws": "^7.4.4",
+    "yup": "^0.32.9"
   },
   "devDependencies": {},
   "scripts": {
