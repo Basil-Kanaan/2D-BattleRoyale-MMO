@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, {useContext, useRef} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
@@ -6,12 +6,14 @@ import Grid from '@material-ui/core/Grid';
 // import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import { useFormik } from 'formik';
+import {makeStyles} from '@material-ui/core/styles';
+import {useFormik} from 'formik';
 import * as yup from 'yup';
-import { AuthContext } from '../../contexts/AuthContext';
+
+import {AuthContext} from '../../contexts/AuthContext';
+
 import CircularProgress from '@material-ui/core/CircularProgress'
-import { green } from '@material-ui/core/colors';
+import {green} from '@material-ui/core/colors';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
@@ -137,7 +139,7 @@ function Landing() {
     const timer = React.useRef();
     const [loading, setLoading] = React.useState(false);
     const [open, setOpen] = React.useState(false);
-    const { updateAuth, updateToken } = useContext(AuthContext);
+    const {updateAuth, updateToken} = useContext(AuthContext);
     const [confirmPass, setConfirmPass] = React.useState(false);
 
     const handleLogin = (values) => {
@@ -196,7 +198,7 @@ function Landing() {
             <Grid container component="main" className={classes.root}>
                 {/*<CssBaseline/>*/}
                 <Grid item xs={12}>
-                <AppBar position="static" className={classes.navbar}>
+                    <AppBar position="static" className={classes.navbar}>
                         <Toolbar className={classes.navtitle}>
                             <Typography className={classes.hideBtn} onClick={() => {
                                 window.location.href = '/';
@@ -224,7 +226,7 @@ function Landing() {
 
                         <Typography align="center" component="h1" variant="h4">Login</Typography>
 
-                        <hr border="1px solid gray" height="1px" width="60%" color="#dbdbdb" />
+                        <hr border="1px solid gray" height="1px" width="60%" color="#dbdbdb"/>
 
                         <form className={classes.form} onSubmit={formik.handleSubmit}>
                             <Grid container spacing={2}>
@@ -262,10 +264,10 @@ function Landing() {
                             </Grid>
                             <div className={classes.wrapper}>
                                 <Button fullWidth variant="contained" type="submit"
-                                    className={classes.submit} disabled={loading}>
+                                        className={classes.submit} disabled={loading}>
                                     {loading ? "" : "Login"}
                                 </Button>
-                                {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+                                {loading && <CircularProgress size={24} className={classes.buttonProgress}/>}
                             </div>
                         </form>
 
@@ -289,18 +291,20 @@ function Landing() {
                         </Typography>
 
                         <Typography variant="h5" className={classes.aboutmsg}>
-                            Battle Royale is an MMOG<br /><br />
-                            This game includes players, AI, obstacles and a whole world to move around in.<br /><br />
+                            Battle Royale is an MMOG<br/><br/>
+                            This game includes players, AI, obstacles and a whole world to move around in.<br/><br/>
                             You need to survive as long as you can without dying, killing other players and AI to win.
-                            Can you survive the longest? <br /><br />
+                            Can you survive the longest? <br/><br/>
                         </Typography>
 
 
                     </Grid>
                     <Grid item xs={6}>
+
                                <img
                                 src={'https://ychef.files.bbci.co.uk/976x549/p091j3dx.jpg'}
                                 className={classes.subimage} />
+
                     </Grid>
                 </Grid>
 

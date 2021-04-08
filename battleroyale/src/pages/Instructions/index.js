@@ -6,7 +6,16 @@ import {AuthContext} from '../../contexts/AuthContext';
 // styles
 import useStyles from "./styles";
 
-export default function Dashboard(props) {
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+// components
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+export default function Instructions(props) {
     var classes = useStyles();
     const {isAuth, updateAuth, updateToken} = useContext(AuthContext);
 
@@ -33,6 +42,26 @@ export default function Dashboard(props) {
                 <Grid xs={12}>
                     <Paper className={classes.card} variant="outlined">
                        <Typography className={classes.cardTitle} variant="h6" size="small">Instructions</Typography>
+
+    useEffect(() => {
+        checkAuth();
+    }, []);
+
+    return (
+        <div className={classes.cardGrid}>
+            <Snackbar anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+            }} open={open} autoHideDuration={1000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success">
+                    Login successful
+                </Alert>
+            </Snackbar>
+            <Grid>
+                <Grid xs={12}>
+                    <Paper className={classes.card} variant="outlined">
+                        <Typography className={classes.cardTitle} variant="h6" size="small">Instructions</Typography>
+
                         <ul>
                             <li>
                                 Use WASD to move the player
@@ -84,6 +113,7 @@ export default function Dashboard(props) {
                         </ul>
                     </Paper>
                 </Grid>
+
             </Grid>
         </div>
     );

@@ -6,7 +6,7 @@ export default makeStyles((theme) => ({
     },
     cardGrid: {
         padding: 0,
-        
+
     },
     card: {
         marginTop: 30,
@@ -26,5 +26,5 @@ export default makeStyles((theme) => ({
         textAlign: 'center',
         fontSize: 30,
     }
-    
+
 }));
