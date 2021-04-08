@@ -78,15 +78,8 @@ export default class World {
         this.generateBoundaries();
         this.generateObstacles();
 
-        // init player data
-        var velocity = new Pair(0, 0);
-        var radius = 20;
-        var colour = 'rgba(77,153,79,1)';
-        var position = new Pair(Math.floor(this.width / 2), Math.floor(this.height / 2));
-
         // create new player and add to world
-        this.player = null;
-        this.addPlayer(new Player(position, velocity, colour, radius, playerHealth));
+        this.spawnPlayer();
 
         // create new camera
         this.camera = new Camera(canvas, this.player, this);
@@ -96,6 +89,56 @@ export default class World {
     updateMouse(event) {
         this.mouse.x = event.clientX;
         this.mouse.y = event.clientY;
+    }
+
+    // adds player to actors and world
+    spawnPlayer(){
+        // init player data
+        var velocity = new Pair(0, 0);
+        var radius = 20;
+        var colour = 'rgba(77,153,79,1)';
+
+        while (true){
+
+            var x = randint(this.width-radius*2) + radius;
+            var y = randint(this.height-radius*2) + radius;
+            var position = new Pair(x, y);
+
+            this.player = null;
+            this.addPlayer(new Player(position, velocity, colour, radius, playerHealth));
+
+            var isColliding = false;
+
+            // for each actor, take a step and perform operations
+            for (var i = 0; i < this.actors.length; i++) {
+
+                var actor = this.actors[i];
+                var className = actor.constructor.name;
+
+                if (actor === this.player){
+                    continue;
+                }
+
+                switch(className){
+                    case "Ai":
+                        if (this.collisionHandler.isCollision["ballball"](this.player, actor)) {
+                            isColliding = true;
+                        }
+                        break;
+
+                    case "Wall":
+                        if (this.collisionHandler.isCollision["ballwall"](this.player, actor)) {
+                            isColliding = true;
+                        }
+                        break;
+                }
+
+                if (isColliding) break;
+            }
+
+            if (!isColliding) break;
+            else this.removePlayer();
+        }
     }
 
     // player shoot event handler
