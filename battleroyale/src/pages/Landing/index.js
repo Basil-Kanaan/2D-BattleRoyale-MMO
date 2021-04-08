@@ -9,17 +9,19 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import {useFormik} from 'formik';
 import * as yup from 'yup';
+
 import {AuthContext} from '../../contexts/AuthContext';
+
 import CircularProgress from '@material-ui/core/CircularProgress'
 import {green} from '@material-ui/core/colors';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
 const validationSchema = yup.object({
-    email: yup
-        .string('Enter your email')
-        .email('Enter a valid email')
-        .required('Email is required'),
+    username: yup
+        .string('Enter your username')
+        .min(6, 'Username should be of minimum 6 characters length')
+        .required('Username is required'),
     password: yup
         .string('Enter your password')
         .min(6, 'Password should be of minimum 6 characters length')
@@ -117,48 +119,6 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: "35%",
 
     },
-
-    abouth2: {
-        marginTop: "10%",
-        marginLeft: "10%",
-        justify: "right",
-
-    },
-
-    aboutmsg2: {
-        fontFamily: "Poppins",
-        marginTop: "10%",
-        marginLeft: "10%",
-        justify: "right",
-        fontSize: "10",
-        width: "500px"
-
-    },
-
-    footer: {
-        backgroundColor: "lightgray",
-        float: "bottom",
-        padding: "20px",
-    },
-
-    team: {
-        fontFamily: "Poppins",
-        margin: "50px",
-        fontSize: "10",
-    },
-    signup: {
-        margin: theme.spacing(3, 0, 2),
-        backgroundColor: "#55bfbc",
-        color: "white",
-        "&:hover": {
-            backgroundColor: "#39807e"
-        },
-        marginLeft: "10%",
-        justify: "right",
-        width: "150px",
-        height: "50px",
-        fontSize: "18px",
-    },
     subimage: {
         marginTop: "15%",
         marginLeft: "10%",
@@ -182,7 +142,7 @@ function Landing() {
     const {updateAuth, updateToken} = useContext(AuthContext);
     const [confirmPass, setConfirmPass] = React.useState(false);
 
-    const handleRegister = (values) => {
+    const handleLogin = (values) => {
 
         if (values.confirmpassword !== values.password) {
             setConfirmPass(true);
@@ -218,18 +178,16 @@ function Landing() {
     const formik = useFormik({
 
         initialValues: {
-            email: '',
+            username: '',
             password: '',
-            confirmpassword: '',
-            firstName: '',
-            lastName: ''
+           
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
             setLoading(true);
             timer.current = window.setTimeout(() => {
                 setLoading(false);
-                handleRegister(values);
+                handleLogin(values);
             }, 2000);
         },
     });
@@ -264,7 +222,6 @@ function Landing() {
                 </Grid>
 
                 <Grid item xs={6}>
-
                     <Card className={classes.card}>
 
                         <Typography align="center" component="h1" variant="h4">Login</Typography>
@@ -273,20 +230,18 @@ function Landing() {
 
                         <form className={classes.form} onSubmit={formik.handleSubmit}>
                             <Grid container spacing={2}>
-
                                 <Grid item xs={12}>
                                     <TextField
                                         variant="outlined"
                                         required
                                         fullWidth
-                                        id="email"
-                                        label="Email Address"
-                                        name="email"
-                                        autoComplete="email"
-                                        value={formik.values.email}
+                                        id="username"
+                                        label="Username"
+                                        name="username"
+                                        value={formik.values.username}
                                         onChange={formik.handleChange}
-                                        error={formik.touched.email && Boolean(formik.errors.email)}
-                                        helperText={formik.touched.email && formik.errors.email}
+                                        error={formik.touched.username && Boolean(formik.errors.username)}
+                                        helperText={formik.touched.username && formik.errors.username}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -345,17 +300,15 @@ function Landing() {
 
                     </Grid>
                     <Grid item xs={6}>
-                        <img
-                            src={'https://ychef.files.bbci.co.uk/976x549/p091j3dx.jpg'}
-                            className={classes.subimage}/>
+
+                               <img
+                                src={'https://ychef.files.bbci.co.uk/976x549/p091j3dx.jpg'}
+                                className={classes.subimage} />
 
                     </Grid>
-
                 </Grid>
 
             </div>
-
-
         </div>
     );
 }

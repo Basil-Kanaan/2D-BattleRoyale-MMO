@@ -35,21 +35,6 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         width: 1000,
     },
-    login: {
-        flex: 1,
-        display: 'flex',
-        justifyContent: 'flex-end',
-    },
-    menu: {
-        marginLeft: -50,
-        marginTop: 60,
-        height: 200,
-        width: 1000,
-    },
-    menuItms: {
-        width: 150,
-        height: 40
-    }
 }));
 
 export default function AppNavbar() {
@@ -57,6 +42,10 @@ export default function AppNavbar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const classes = useStyles();
     const {updateAuth, updateToken} = useContext(AuthContext);
+
+    // const handleClick = (event) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -86,6 +75,10 @@ export default function AppNavbar() {
         window.location.href = '/#/app/profile';
     };
 
+
+    // const handleClose = () => {
+    //     setAnchorEl(null);
+    // };
     const handleLogout = () => {
         setAnchorEl(4);
         updateAuth(false);
@@ -104,14 +97,13 @@ export default function AppNavbar() {
                     Battle Royale
                 </Typography>
                 <Tabs className={classes.tabs}>
+
                     <Tab value={0} index={0} onClick={handlePlay} label="Play" icon={<HomeIcon/>}/>
                     <Tab value={1} index={1} onClick={handleInstructions} label="Instructions" icon={<FileCopyIcon/>}/>
                     <Tab value={2} index={2} onClick={handleStats} label="Stats" icon={<EqualizerIcon/>}/>
                     <Tab value={3} index={3} onClick={handleProfile} label="Profile" icon={<PersonIcon/>}/>
                     <Tab value={4} index={4} onClick={handleLogout} label="Logout" icon={<CompareArrowsIcon/>}/>
-
                 </Tabs>
-
             </Toolbar>
         </AppBar>
     );

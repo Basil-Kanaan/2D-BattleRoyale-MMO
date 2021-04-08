@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import {AuthContext} from '../../contexts/AuthContext';
 // styles
 import useStyles from "./styles";
+
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
@@ -16,33 +17,7 @@ function Alert(props) {
 
 export default function Instructions(props) {
     var classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
-    const [email, setEmail] = React.useState('');
-    const [list, setList] = React.useState([]);
-    const [upcomingBills, setUpcomingBills] = React.useState([]);
-    const [internet, setInternet] = React.useState(0);
-    const [food, setFood] = React.useState(0);
-    const [electricity, setElectricity] = React.useState(0);
-    const [phone, setPhone] = React.useState(0);
-    const [water, setWater] = React.useState(0);
-    const [utilities, setUtilities] = React.useState(0);
-    const [other, setOther] = React.useState(0);
-    const [sixInternet, setSixInternet] = React.useState([0, 0, 0, 0, 0, 0]);
-    const [sixPhone, setSixPhone] = React.useState([0, 0, 0, 0, 0, 0]);
-    const [sixFood, setSixFood] = React.useState([0, 0, 0, 0, 0, 0]);
-    const [sixUtilities, setSixUtilities] = React.useState([0, 0, 0, 0, 0, 0]);
-    const [lastSixMonths, setLastSixMonths] = React.useState(['', '', '', '', '', '']);
-    const [value, setValue] = React.useState("");
-    const [billCount, setBillCount] = React.useState("");
-    const [open, setOpen] = React.useState(false);
     const {isAuth, updateAuth, updateToken} = useContext(AuthContext);
-
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setOpen(false);
-    };
 
     const checkAuth = () => {
         fetch('http://localhost:8000/api/user/verify', {
@@ -59,6 +34,14 @@ export default function Instructions(props) {
             console.log("Error");
         });
     };
+
+    return (
+        <div className={classes.cardGrid}>
+            
+            <Grid >
+                <Grid xs={12}>
+                    <Paper className={classes.card} variant="outlined">
+                       <Typography className={classes.cardTitle} variant="h6" size="small">Instructions</Typography>
 
     useEffect(() => {
         checkAuth();
@@ -130,7 +113,6 @@ export default function Instructions(props) {
                         </ul>
                     </Paper>
                 </Grid>
-
 
             </Grid>
         </div>

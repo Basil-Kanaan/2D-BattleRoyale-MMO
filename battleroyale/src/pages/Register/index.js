@@ -22,6 +22,12 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import MuiAlert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 
 const useStyles = makeStyles((theme) => ({
@@ -90,15 +96,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const validationSchema = yup.object({
-    email: yup
-        .string('Enter your email')
-        .email('Enter a valid email')
-        .required('Email is required'),
+    username: yup
+        .string('Enter your username')
+        .min(6, 'Username should be of minimum 6 characters length')
+        .required('Username is required'),
     password: yup
         .string('Enter your password')
         .min(6, 'Password should be of minimum 6 characters length')
         .required('Password is required'),
+    radbtn: yup
+    .string('Please select a skill level')
+    .min(1, 'Skills should be at least 1')
+    .required('Skill level is required'),
 });
+
 
 
 function SignUp(props) {
@@ -111,6 +122,14 @@ function SignUp(props) {
     const [confirmPass, setConfirmPass] = React.useState(false);
     const [values, setValues] = React.useState({showPassword: false,});
     const [value, setValue] = React.useState('');
+    const [noSkill, setNoSkill] = React.useState(false);
+    const [noRadio, setNoRadio] = React.useState(false);
+    //close all snackbars
+    function handlecloseSnack () {
+        setNoSkill(false);
+        setNoRadio(false);
+    }
+
 
     const [box, setBox] = React.useState({
         Morning: false,
@@ -123,11 +142,10 @@ function SignUp(props) {
         setValue((event.target).value);
     };
 
+
     const handleCheckBtnChange = (event) => {
         setBox({...box, [event.target.value]: event.target.checked});
     };
-
-
     const handleClickShowPassword = () => {
         setValues({...values, showPassword: !values.showPassword});
     };
@@ -137,46 +155,53 @@ function SignUp(props) {
     };
 
     const handleRegister = (values) => {
-
+        try{
         if (values.confirmpassword !== values.password) {
             setConfirmPass(true);
             return;
         }
-
-        var formBody = [];
-        for (var property in values) {
-            var encodedKey = encodeURIComponent(property);
-            var encodedValue = encodeURIComponent(values[property]);
-            formBody.push(encodedKey + "=" + encodedValue);
+        if(box.Morning === false && box.Afternoon == false && box.Night == false){
+            setNoSkill(true);
+            return;
         }
-
-        formBody = formBody.join("&");
-        fetch('http://localhost:8000/api/user/register', {
-            method: 'POST',
-            body: formBody,
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-        }).then(response => response.json()).then(data => {
-            if (data.message) {
-                setOpen(true);
-            } else {
-                localStorage.setItem("token", data.jwtToken);
-                updateAuth(true);
-            }
-        }).catch(err => {
-            setOpen(true);
-        });
+        if(value == ''){
+            setNoRadio(true);
+            return;
+        }
+        }catch(e){
+            console.log(e.stack);
+        }
+        // var formBody = [];
+        // for (var property in values) {
+        //     var encodedKey = encodeURIComponent(property);
+        //     var encodedValue = encodeURIComponent(values[property]);
+        //     formBody.push(encodedKey + "=" + encodedValue);
+        // }
+        // formBody = formBody.join("&");
+        // fetch('http://localhost:8000/api/user/register', {
+        //     method: 'POST',
+        //     body: formBody,
+        //     headers: {
+        //         "Content-Type": "application/x-www-form-urlencoded"
+        //     }
+        // }).then(response => response.json()).then(data => {
+        //     if (data.message) {
+        //         setOpen(true);
+        //     } else {
+        //         localStorage.setItem("token", data.jwtToken);
+        //         updateAuth(true);
+        //     }
+        // }).catch(err => {
+        //     setOpen(true);
+        // });
     };
 
     const formik = useFormik({
 
         initialValues: {
-            email: '',
+            username: '',
             password: '',
             confirmpassword: '',
-            firstName: '',
-            lastName: ''
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -212,21 +237,19 @@ function SignUp(props) {
                             SIGN UP
                         </Typography>
 
-                        <form className={classes.form} onSubmit={formik.handleSubmit}>
+                        <form id="regForm"className={classes.form} onSubmit={formik.handleSubmit}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <TextField
-                                        autoComplete="fname"
-                                        name="firstName"
                                         variant="outlined"
                                         required
                                         fullWidth
-                                        id="firstName"
+                                        id="username"
                                         label="Username"
-                                        value={formik.values.firstName}
+                                        value={formik.values.username}
                                         onChange={formik.handleChange}
-                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-                                        helperText={formik.touched.firstName && formik.errors.firstName}
+                                        error={formik.touched.username && Boolean(formik.errors.username)}
+                                        helperText={formik.touched.username && formik.errors.username}
                                         autoFocus
                                     />
                                 </Grid>
@@ -286,7 +309,6 @@ function SignUp(props) {
                                         id="date"
                                         label="Birthday"
                                         type="date"
-                                        defaultValue="YYYY-MM-DD"
                                         className={classes.textField}
                                         InputLabelProps={{
                                             shrink: true,
@@ -299,12 +321,16 @@ function SignUp(props) {
                                 </Typography>
 
                                 <Grid item xs={12}>
-                                    <RadioGroup aria-label="day" name="days" value={value}
-                                                onChange={handleRadioGroupChange}>
-                                        <FormControlLabel value="Beginner" control={<Radio/>} label="Beginner"/>
-                                        <FormControlLabel value="Intermediate" control={<Radio/>} label="Intermediate"/>
-                                        <FormControlLabel value="Advanced" control={<Radio/>} label="Advanced"/>
-                                    </RadioGroup>
+                                <RadioGroup  
+                                error= {formik.errors.radbtn}
+                                touched={formik.touched.radbtn}
+                                aria-label="day" name="days"  value={value} onChange={handleRadioGroupChange}
+                                >
+                                <FormControlLabel  value="Beginner" control={<Radio />} label="Beginner" />
+                                <FormControlLabel value="Intermediate" control={<Radio />} label="Intermediate" />
+                                <FormControlLabel value="Advanced" control={<Radio />} label="Advanced" />
+                                </RadioGroup>
+
                                 </Grid>
 
                                 <Typography variant='overline'>
@@ -312,36 +338,36 @@ function SignUp(props) {
                                 </Typography>
 
                                 <Grid item xs={12}>
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox checked={Morning} onChange={handleCheckBtnChange}
-                                                      value="Morning"/>
-                                        }
-                                        label="Morning"
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox checked={Afternoon} onChange={handleCheckBtnChange}
-                                                      value="Afternoon"/>
-                                        }
-                                        label="Afternoon"
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox checked={Night} onChange={handleCheckBtnChange} value="Night"/>
-                                        }
-                                        label="Night"
-                                    />
-                                </Grid>
-
+                                <FormControlLabel
+                                control={
+                                    <Checkbox checked={Morning} onChange={handleCheckBtnChange} value="Morning" />
+                                }
+                                label="Morning"
+                                />
+                                <FormControlLabel
+                                control={
+                                    <Checkbox checked={Afternoon} onChange={handleCheckBtnChange} value="Afternoon" />
+                                }
+                                label="Afternoon"
+                                />
+                                <FormControlLabel
+                                control={
+                                    <Checkbox checked={Night} onChange={handleCheckBtnChange} value="Night" />
+                                }
+                                label="Night"
+                                />
+                                </Grid>  
                             </Grid>
                             <div className={classes.wrapper}>
                                 <Button fullWidth variant="contained" type="submit"
-                                        className={classes.submit} disabled={loading}>
+                                    className={classes.submit} disabled={loading} onClick={handleRegister}>
+
                                     {loading ? "" : "Register"}
                                 </Button>
                                 {loading && <CircularProgress size={24} className={classes.buttonProgress}/>}
                             </div>
+
+
                             <Grid container justify="center">
                                 <Grid item>
                                     <Link href="/" variant="body2">
@@ -349,8 +375,23 @@ function SignUp(props) {
                                     </Link>
                                 </Grid>
                             </Grid>
+                            
                         </form>
                     </div>
+                    <Snackbar anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} open={noSkill}
+                                  autoHideDuration={3000} onClose={handlecloseSnack}>
+                            <Alert onClose={handlecloseSnack} severity="warning">
+                                Please check when you are going to play!
+                            </Alert>
+                    </Snackbar>
+
+                    <Snackbar anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} open={noRadio}
+                                  autoHideDuration={3000} onClose={handlecloseSnack}>
+                            <Alert onClose={handlecloseSnack} severity="warning">
+                                Please check a skill level!
+                            </Alert>
+                    </Snackbar>
+            
 
                 </Paper>
             </Container>

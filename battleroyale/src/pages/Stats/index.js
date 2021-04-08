@@ -38,8 +38,6 @@ const rows = [
 
 export default function Stats(props) {
     var classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
-    const [email, setEmail] = React.useState('');
     const [list, setList] = React.useState([]);
     const [value, setValue] = React.useState("");
     const [open, setOpen] = React.useState(false);
