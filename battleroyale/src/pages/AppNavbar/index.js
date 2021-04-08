@@ -35,21 +35,6 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         width: 1000,
     },
-    login: {
-        flex: 1,
-        display: 'flex',
-        justifyContent: 'flex-end',
-    },
-    menu: {
-        marginLeft: -50,
-        marginTop: 60,
-        height: 200,
-        width: 1000,
-    },
-    menuItms: {
-        width: 150,
-        height: 40
-    }
 }));
 
 export default function AppNavbar() {
@@ -58,19 +43,13 @@ export default function AppNavbar() {
     const classes = useStyles();
     const {updateAuth, updateToken} = useContext(AuthContext);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    // const handleClick = (event) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const handleProfile = () => {
-        setAnchorEl(null);
-        window.location.href = '/#/app/profile';
-    };
-
+    // const handleClose = () => {
+    //     setAnchorEl(null);
+    // };
     const handleLogout = () => {
         setAnchorEl(null);
         updateAuth(false);
@@ -97,9 +76,7 @@ export default function AppNavbar() {
                         window.location.href = '/#/app/profile';
                     }} label="Profile" icon={<PersonIcon/>}/>
                     <Tab onClick={handleLogout} label="Logout" icon={<CompareArrowsIcon/>}/>
-
                 </Tabs>
-
             </Toolbar>
         </AppBar>
     );
