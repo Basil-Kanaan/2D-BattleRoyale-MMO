@@ -103,7 +103,7 @@ export default class World {
 			var position = this.player.turret_position.copy();
 			var velocity = mouseRelativePos.sub(playerRelativePos).normalize().mult(25);
 
-			this.shootBullet(position, velocity, this.player.weapon);
+			this.shootBullet(position, velocity, this.player.weapon, this.player);
 			this.player.ammo[this.player.weapon]--;
 		}
 	}
@@ -268,10 +268,10 @@ export default class World {
 					if (actor1.interval == null) {
 
 						actor1.interval = setInterval((world, actor, player) => {
-							var position = actor.turret_position.copy()
+							var position = actor.turret_position.copy();
 							var velocity = player.position.copy().sub(actor.position).normalize().mult(25);
 
-							world.shootBullet(position, velocity, actor.weapon);
+							world.shootBullet(position, velocity, actor.weapon, actor);
 						}, 1000, this, actor1, this.player);
 					}
 				}
@@ -309,22 +309,23 @@ export default class World {
 	}
 
 	// shoot a bullet for some ai based on type
-	shootBullet(position, velocity, type) {
+	shootBullet(position, velocity, type, shooter) {
 
-		if (type == "railgun") {
-			var bullet = this.ammunitionFactory.getBullet(position, velocity, type);
+		let bullet;
+		if (type === "railgun") {
+			bullet = this.ammunitionFactory.getBullet(position, velocity, type, shooter);
 			this.addActor(bullet);
 
 			setTimeout((world, bullet) => {
 				world.addActor(bullet);
-			}, 100, this, this.ammunitionFactory.getBullet(position, velocity, type));
+			}, 100, this, this.ammunitionFactory.getBullet(position, velocity, type, shooter));
 
 			setTimeout((world, bullet) => {
 				world.addActor(bullet);
-			}, 200, this, this.ammunitionFactory.getBullet(position, velocity, type));
+			}, 200, this, this.ammunitionFactory.getBullet(position, velocity, type, shooter));
 
 		} else {
-			var bullet = this.ammunitionFactory.getBullet(position, velocity, type);
+			bullet = this.ammunitionFactory.getBullet(position, velocity, type, shooter);
 			this.addActor(bullet);
 		}
 	}

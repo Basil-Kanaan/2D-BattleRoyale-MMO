@@ -11,7 +11,7 @@ export default class AmmunitionFactory {
         this.world = world;
     }
 
-    getBullet(position, velocity, type) {
+    getBullet(position, velocity, type, shooter) {
         var radius;
         var colour;
         var damage;
@@ -37,7 +37,7 @@ export default class AmmunitionFactory {
                 break;
         }
 
-        return new Bullet(position, velocity, colour, radius, damage, type);
+        return new Bullet(position, velocity, colour, radius, damage, type, shooter);
     }
 
     getAmmo(type) {

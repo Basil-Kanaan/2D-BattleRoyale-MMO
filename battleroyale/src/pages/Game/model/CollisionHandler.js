@@ -130,7 +130,7 @@ export default class CollisionHandler {
                     obj2.health -= bullet.damage;
                     if (obj2.health <= 0) {
                         this.world.removeActor(obj2);
-                        this.world.player.score += obj2.points;
+                        bullet.shooter.score += obj2.points;
                     }
                 }
                 break;
@@ -152,7 +152,7 @@ export default class CollisionHandler {
                             clearInterval(obj2.interval);
                             obj2.interval = null;
                             this.world.generateAi(1, obj2.type);
-                            this.world.player.score += 1000*this.scoremult;
+                            bullet.shooter.score += 1000*this.scoremult;
                         } else {
                             this.world.end = true;
                         }
