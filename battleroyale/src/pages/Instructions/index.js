@@ -35,13 +35,13 @@ export default function Instructions(props) {
         });
     };
 
-    return (
-        <div className={classes.cardGrid}>
+    // return (
+    //     <div className={classes.cardGrid}>
             
-            <Grid >
-                <Grid xs={12}>
-                    <Paper className={classes.card} variant="outlined">
-                       <Typography className={classes.cardTitle} variant="h6" size="small">Instructions</Typography>
+    //         <Grid >
+    //             <Grid xs={12}>
+    //                 <Paper className={classes.card} variant="outlined">
+    //                    <Typography className={classes.cardTitle} variant="h6" size="small">Instructions</Typography>
 
     useEffect(() => {
         checkAuth();
@@ -49,14 +49,14 @@ export default function Instructions(props) {
 
     return (
         <div className={classes.cardGrid}>
-            <Snackbar anchorOrigin={{
+            {/* <Snackbar anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
             }} open={open} autoHideDuration={1000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="success">
                     Login successful
                 </Alert>
-            </Snackbar>
+            </Snackbar> */}
             <Grid>
                 <Grid xs={12}>
                     <Paper className={classes.card} variant="outlined">
