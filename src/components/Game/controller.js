@@ -20,7 +20,7 @@ const moveMap = {
     'w': new Pair(0, -1)
 };
 
-const controls = {
+let controls = {
     'a': false,
     's': false,
     'd': false,

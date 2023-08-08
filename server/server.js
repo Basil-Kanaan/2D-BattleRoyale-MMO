@@ -1,9 +1,9 @@
 // External libraries import
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const cors = require("cors");
+const cors = require('cors');
 
 // Routes import
 const user = require('./routes.js');

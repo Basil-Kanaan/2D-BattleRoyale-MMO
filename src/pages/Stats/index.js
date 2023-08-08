@@ -24,16 +24,16 @@ function createData(name, score) {
 
 
 const rows = [
-    createData('Player', 159),
-    createData('Player', 237),
-    createData('Player', 262),
-    createData('Player', 305),
-    createData('Player', 356),
-    createData('Player', 159),
-    createData('Player', 237),
-    createData('Player', 262),
-    createData('Player', 305),
-    createData('Player', 356),
+    createData('Player1', 159),
+    createData('Player2', 237),
+    createData('Player3', 262),
+    createData('Player4', 305),
+    createData('Player5', 356),
+    createData('Player6', 159),
+    createData('Player7', 237),
+    createData('Player8', 262),
+    createData('Player9', 305),
+    createData('Player0', 356),
 ];
 
 export default function Stats(props) {
@@ -130,9 +130,14 @@ export default function Stats(props) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableCell> User </TableCell>
-                        <TableCell> 1000 </TableCell>
+                        {list.map((item, index) => (
+                            <TableRow key={index}>
+                                <TableCell>{item.user}</TableCell>
+                                <TableCell>{item.score}</TableCell>
+                            </TableRow>
+                        ))}
                     </TableBody>
+
                 </Table>
 
             </TableContainer>

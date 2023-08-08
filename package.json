@@ -7,6 +7,7 @@
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "formik": "^2.2.6",
     "pg": "^8.5.1",
@@ -15,10 +16,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "web-vitals": "^1.1.1",
-    "yup": "^0.32.9",
-    "ws": "latest"
+    "ws": "latest",
+    "yup": "^0.32.9"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

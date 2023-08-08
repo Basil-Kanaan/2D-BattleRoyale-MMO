@@ -1,30 +1,36 @@
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
-    },
-    cardGrid: {
-        padding: 0,
-
+        paddingTop: theme.spacing(6),
     },
     card: {
-        marginTop: 30,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        position: 'relative',
-        height: 600,
-        width: 600,
-        padding: 25,
-        textAlign: 'center',
-        alignItems: "center",
-        color: theme.palette.text.secondary,
-        borderRadius: 5,
-        boxShadow: '5px 5px 13px #ededed, -5px -5px 13px #ffffff;',
+        marginTop: theme.spacing(3),
+        padding: theme.spacing(3),
+        textAlign: 'left',
+        borderRadius: theme.spacing(1),
+        boxShadow: theme.shadows[3],
+        fontSize: 18
     },
     cardTitle: {
         textAlign: 'center',
-        fontSize: 30,
-    }
-
+        fontSize: 36,
+        marginBottom: theme.spacing(2),
+        fontWeight: "bolder"
+    },
+    purpleText: {
+        color: theme.palette.primary.main,
+    },
+    blueText: {
+        color: theme.palette.info.main,
+    },
+    yellowText: {
+        color: theme.palette.warning.main,
+    },
+    greenText: {
+        color: theme.palette.success.main,
+    },
+    gunTypeText: {
+        color: theme.palette.secondary.main,
+    },
 }));

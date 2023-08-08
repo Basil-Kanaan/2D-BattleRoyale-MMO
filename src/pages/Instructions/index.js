@@ -1,21 +1,16 @@
-import React, {useContext, useEffect} from "react";
-import {Grid} from "@material-ui/core";
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import {AuthContext} from '../../contexts/AuthContext';
-// styles
+import React, { useContext, useEffect } from "react";
+import { Grid, Paper, Typography, Container } from "@material-ui/core";
+import { AuthContext } from '../../contexts/AuthContext';
 import useStyles from "./styles";
 import MuiAlert from '@material-ui/lab/Alert';
-
-// components
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 export default function Instructions(props) {
-    var classes = useStyles();
-    const {isAuth, updateAuth, updateToken} = useContext(AuthContext);
+    const classes = useStyles();
+    const { isAuth } = useContext(AuthContext);
 
     const checkAuth = () => {
         fetch('http://localhost:8000/api/user/verify', {
@@ -33,86 +28,47 @@ export default function Instructions(props) {
         });
     };
 
-    // return (
-    //     <div className={classes.cardGrid}>
-
-    //         <Grid >
-    //             <Grid xs={12}>
-    //                 <Paper className={classes.card} variant="outlined">
-    //                    <Typography className={classes.cardTitle} variant="h6" size="small">Instructions</Typography>
-
     useEffect(() => {
         checkAuth();
     }, []);
 
     return (
-        <div className={classes.cardGrid}>
-            {/* <Snackbar anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-            }} open={open} autoHideDuration={1000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="success">
-                    Login successful
-                </Alert>
-            </Snackbar> */}
-            <Grid>
-                <Grid xs={12}>
+        <Container maxWidth="md" className={classes.root}>
+            <Grid container justifyContent="center">
+                <Grid item xs={12} sm={10} md={8}>
                     <Paper className={classes.card} variant="outlined">
-                        <Typography className={classes.cardTitle} variant="h6" size="small">Instructions</Typography>
+                        <Typography className={classes.cardTitle} variant="h6">
+                            Instructions
+                        </Typography>
 
                         <ul>
-                            <li>
-                                Use WASD to move the player
-                            </li>
-                            <li>
-                                Use cursor to point the turret and left click to shoot
-                            </li>
-                            <li>
-                                Move around to pick up different ammo packs
-                            </li>
-                            <li>
-                                Each quadrant represents a terrain:
+                            <li>Move using WASD keys.</li>
+                            <li>Aim and shoot with the cursor and left-click.</li>
+                            <li>Collect ammo packs to reload.</li>
+                            <li>Quadrants represent different terrains with effects:
                                 <ul>
-                                    <li>
-                                        Nether(Purple): All players take more damage
-                                    </li>
-                                    <li>
-                                        Ice(Blue): Player can move faster
-                                    </li>
-                                    <li>
-                                        Sand(Yellow): Player moves slower
-                                    </li>
-                                    <li>
-                                        Grass(Green): Player moves normally
-                                    </li>
+                                    <li className={classes.purpleText}>Nether (Purple): Higher damage for all players.</li>
+                                    <li className={classes.blueText}>Ice (Blue): Faster movement speed.</li>
+                                    <li className={classes.yellowText}>Sand (Yellow): Slower movement.</li>
+                                    <li className={classes.greenText}>Grass (Green): Normal movement.</li>
                                 </ul>
                             </li>
-                            <li>
-                                3 Different AI
+                            <li>Battle AI opponents to score points.</li>
+                            <li>Use various gun types:
+                                <ul>
+                                    <li className={classes.gunTypeText}>Cannon: Powerful single shots.</li>
+                                    <li className={classes.gunTypeText}>Pistol: Fast and accurate shots.</li>
+                                    <li className={classes.gunTypeText}>Shotgun: Spreads damage over an area.</li>
+                                </ul>
                             </li>
-                            <li>
-                                Score by killing the AI
-                            </li>
-                            <li>
-                                Multiple weapons (Cannon, Pistol, Shotgun)
-                            </li>
-                            <li>
-                                Use space bar to switch between weapons
-                            </li>
-                            <li>
-                                Change the difficulty by clicking on one of the options
-                            </li>
-                            <li>
-                                Restart the game by clicking the play again button at the bottom
-                            </li>
-                            <li>
-                                Try to last as long as you can!
-                            </li>
+                            <li>Switch guns quickly with the space bar.</li>
+                            <li>Adjust difficulty settings to change the challenge.</li>
+                            <li>Restart the game by clicking "Play Again."</li>
+                            <li>Survive as long as possible!</li>
                         </ul>
                     </Paper>
                 </Grid>
-
             </Grid>
-        </div>
+        </Container>
     );
 }

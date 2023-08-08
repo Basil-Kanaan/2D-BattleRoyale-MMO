@@ -11,7 +11,6 @@ import Button from '@material-ui/core/Button';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
-import PageTitle from "../../components/PageTitle";
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -139,7 +138,7 @@ function TabPanel(props) {
         >
             {value === index && (
                 <Box p={3}>
-                    <Typography>{children}</Typography>
+                    <div>{children}</div>
                 </Box>
             )}
         </div>
@@ -418,7 +417,9 @@ export default function Profile() {
                 </Alert>
             </Snackbar>
             <main className={classes.content}>
-                <PageTitle title="Account Settings"/>
+                <Typography className={classes.pageTitle} variant="h4">
+                    Account Settings
+                </Typography>
                 <Container maxWidth="lg" className={classes.container}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={4} lg={2}>
@@ -469,24 +470,22 @@ export default function Profile() {
                             <Paper className={fixedHeightPaper}>
                                 <div>
                                     <TabPanel value={value} index={0}>
-                                        <Typography className={classes.paperTitle}>Account Details</Typography>
+                                        <Typography variant='overline'>Account Details</Typography>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
-                                                <FormControl id="Username"
-                                                             fullWidth
-                                                             label="Username"
-                                                             variant="outlined">
-                                                    <InputLabel disabled={true}
-                                                                htmlFor="outlined-adornment-firstname">Username</InputLabel>
+                                                <FormControl id="Username" fullWidth variant="outlined">
+                                                    <InputLabel disabled={true} htmlFor="outlined-adornment-firstname">
+                                                        Username
+                                                    </InputLabel>
                                                     <OutlinedInput
                                                         disabled={true}
                                                         id="outlined-adornment-firstname"
                                                         value={values.first_name}
-                                                        onChange={handleProfileChange('first_name')
-                                                        }
+                                                        onChange={handleProfileChange('first_name')}
                                                         labelWidth={80}
                                                     />
                                                 </FormControl>
+
                                             </Grid>
                                             <Typography variant='overline'>
                                                 Please select your Birthday:
