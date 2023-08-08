@@ -5,7 +5,7 @@ import {Route, Switch,} from "react-router-dom";
 import useStyles from "./styles";
 // pages
 import Play from "../../pages/Play";
-import NavBar from "../../pages/AppNavbar";
+import NavBar from "../../pages/NavBar";
 import Profile from "../../pages/Profile";
 import Instructions from "../../pages/Instructions";
 import Stats from "../../pages/Stats";

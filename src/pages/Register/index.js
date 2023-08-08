@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '../../components/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Paper } from '@material-ui/core'
-import { useFormik, useFormikContext, useField } from 'formik';
+import {Paper} from '@material-ui/core'
+import {useFormik} from 'formik';
 import * as yup from 'yup';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
@@ -15,15 +15,16 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { AuthContext } from "../../contexts/AuthContext";
+import {AuthContext} from "../../contexts/AuthContext";
 import CircularProgress from '@material-ui/core/CircularProgress'
-import { green } from '@material-ui/core/colors';
+import {green} from '@material-ui/core/colors';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -110,16 +111,15 @@ const validationSchema = yup.object({
 });
 
 
-
 function SignUp(props) {
     const classes = useStyles();
 
     const timer = React.useRef();
     const [loading, setLoading] = React.useState(false);
     const [open, setOpen] = React.useState(false);
-    const { updateAuth, updateToken } = useContext(AuthContext);
+    const {updateAuth, updateToken} = useContext(AuthContext);
     const [confirmPass, setConfirmPass] = React.useState(false);
-    const [values, setValues] = React.useState({ showPassword: false, });
+    const [values, setValues] = React.useState({showPassword: false,});
     const [value, setValue] = React.useState('');
     const [noSkill, setNoSkill] = React.useState(false);
     const [noRadio, setNoRadio] = React.useState(false);
@@ -130,12 +130,13 @@ function SignUp(props) {
         setNoSkill(false);
         setNoRadio(false);
     }
+
     const [box, setBox] = React.useState({
         Morning: false,
         Afternoon: false,
         Night: false,
     });
-    const { Morning, Afternoon, Night } = box;
+    const {Morning, Afternoon, Night} = box;
 
     const handleRadioGroupChange = (event) => {
         setValue((event.target).value);
@@ -143,10 +144,10 @@ function SignUp(props) {
 
 
     const handleCheckBtnChange = (event) => {
-        setBox({ ...box, [event.target.value]: event.target.checked });
+        setBox({...box, [event.target.value]: event.target.checked});
     };
     const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
+        setValues({...values, showPassword: !values.showPassword});
     };
 
     const handleMouseDownPassword = (event) => {
@@ -292,7 +293,7 @@ function SignUp(props) {
                                                         onMouseDown={handleMouseDownPassword}
                                                         edge="end"
                                                     >
-                                                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                                        {values.showPassword ? <Visibility/> : <VisibilityOff/>}
                                                     </IconButton>
                                                 </InputAdornment>
                                             )
@@ -350,9 +351,9 @@ function SignUp(props) {
                                         touched={formik.touched.radbtn}
                                         aria-label="day" name="days" value={value} onChange={handleRadioGroupChange}
                                     >
-                                        <FormControlLabel value="Beginner" control={<Radio />} label="Beginner" />
-                                        <FormControlLabel value="Intermediate" control={<Radio />} label="Intermediate" />
-                                        <FormControlLabel value="Advanced" control={<Radio />} label="Advanced" />
+                                        <FormControlLabel value="Beginner" control={<Radio/>} label="Beginner"/>
+                                        <FormControlLabel value="Intermediate" control={<Radio/>} label="Intermediate"/>
+                                        <FormControlLabel value="Advanced" control={<Radio/>} label="Advanced"/>
                                     </RadioGroup>
 
                                 </Grid>
@@ -364,19 +365,21 @@ function SignUp(props) {
                                 <Grid item xs={12}>
                                     <FormControlLabel
                                         control={
-                                            <Checkbox checked={Morning} onChange={handleCheckBtnChange} value="Morning" />
+                                            <Checkbox checked={Morning} onChange={handleCheckBtnChange}
+                                                      value="Morning"/>
                                         }
                                         label="Morning"
                                     />
                                     <FormControlLabel
                                         control={
-                                            <Checkbox checked={Afternoon} onChange={handleCheckBtnChange} value="Afternoon" />
+                                            <Checkbox checked={Afternoon} onChange={handleCheckBtnChange}
+                                                      value="Afternoon"/>
                                         }
                                         label="Afternoon"
                                     />
                                     <FormControlLabel
                                         control={
-                                            <Checkbox checked={Night} onChange={handleCheckBtnChange} value="Night" />
+                                            <Checkbox checked={Night} onChange={handleCheckBtnChange} value="Night"/>
                                         }
                                         label="Night"
                                     />
@@ -384,10 +387,10 @@ function SignUp(props) {
                             </Grid>
                             <div className={classes.wrapper}>
                                 <Button fullWidth variant="contained" type="submit"
-                                    className={classes.submit} disabled={loading} > {/*onClick={handleRegister}*/}
+                                        className={classes.submit} disabled={loading}> {/*onClick={handleRegister}*/}
                                     {loading ? "" : "Register"}
                                 </Button>
-                                {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+                                {loading && <CircularProgress size={24} className={classes.buttonProgress}/>}
                             </div>
 
 
@@ -401,18 +404,18 @@ function SignUp(props) {
 
                         </form>
                     </div>
-                    <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={noSkill}
-                        autoHideDuration={3000} onClose={handlecloseSnack}>
+                    <Snackbar anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} open={noSkill}
+                              autoHideDuration={3000} onClose={handlecloseSnack}>
                         <Alert onClose={handlecloseSnack} severity="warning">
                             Please check when you are going to play!
-                            </Alert>
+                        </Alert>
                     </Snackbar>
 
-                    <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={noRadio}
-                        autoHideDuration={3000} onClose={handlecloseSnack}>
+                    <Snackbar anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} open={noRadio}
+                              autoHideDuration={3000} onClose={handlecloseSnack}>
                         <Alert onClose={handlecloseSnack} severity="warning">
                             Please check a skill level!
-                            </Alert>
+                        </Alert>
                     </Snackbar>
 
 

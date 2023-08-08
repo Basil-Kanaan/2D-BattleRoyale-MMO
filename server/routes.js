@@ -52,8 +52,6 @@ router.post('/api/user/profile', authorize, (req, res) => {
 });
 
 
-
-
 router.post("/api/user/verify", authorize, (req, res) => {
     try {
         res.json(true);
@@ -186,7 +184,7 @@ router.delete('/api/user', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    User.findOne({ email })
+    User.findOne({email})
         .then(user => {
             if (!user) {
                 res.status(404).send();
@@ -196,7 +194,7 @@ router.delete('/api/user', (req, res) => {
                     if (!result) {
                         res.status(401).json("Invalid Password!");
                     } else {
-                        User.findOneAndRemove({ email })
+                        User.findOneAndRemove({email})
                             .then(user => {
                                 if (!user) {
                                     res.status(404).send();
@@ -226,7 +224,7 @@ router.patch('/api/user', (req, res) => {
         email: req.body.email,
     };
 
-    User.findOneAndUpdate({ email }, { $set: new_user_info }, { new: true })
+    User.findOneAndUpdate({email}, {$set: new_user_info}, {new: true})
         .then(user => {
             if (!user) {
                 res.status(404).send();
@@ -245,7 +243,7 @@ router.patch('/api/user/password', (req, res) => {
     const email = req.body.email;
     const currPass = req.body.currentpassword
     const password = req.body.password
-    User.findOne({ email })
+    User.findOne({email})
         .then(user => {
             if (!user) {
                 res.status(404).send();
@@ -259,7 +257,7 @@ router.patch('/api/user/password', (req, res) => {
                             const new_user_info = {
                                 password: hash,
                             };
-                            User.findOneAndUpdate({ email }, { $set: new_user_info }, { new: true })
+                            User.findOneAndUpdate({email}, {$set: new_user_info}, {new: true})
                                 .then(user => {
                                     if (!user) {
                                         res.status(404).send();

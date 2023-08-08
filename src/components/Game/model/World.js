@@ -92,16 +92,16 @@ export default class World {
     }
 
     // adds player to actors and world
-    spawnPlayer(){
+    spawnPlayer() {
         // init player data
         var velocity = new Pair(0, 0);
         var radius = 20;
         var colour = 'rgba(77,153,79,1)';
 
-        while (true){
+        while (true) {
 
-            var x = randint(this.width-radius*2) + radius;
-            var y = randint(this.height-radius*2) + radius;
+            var x = randint(this.width - radius * 2) + radius;
+            var y = randint(this.height - radius * 2) + radius;
             var position = new Pair(x, y);
 
             this.player = null;
@@ -115,11 +115,11 @@ export default class World {
                 var actor = this.actors[i];
                 var className = actor.constructor.name;
 
-                if (actor === this.player){
+                if (actor === this.player) {
                     continue;
                 }
 
-                switch(className){
+                switch (className) {
                     case "Ai":
                         if (this.collisionHandler.isCollision["ballball"](this.player, actor)) {
                             isColliding = true;

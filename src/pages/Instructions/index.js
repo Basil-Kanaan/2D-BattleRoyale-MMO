@@ -5,8 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import {AuthContext} from '../../contexts/AuthContext';
 // styles
 import useStyles from "./styles";
-
-import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
 // components
@@ -37,7 +35,7 @@ export default function Instructions(props) {
 
     // return (
     //     <div className={classes.cardGrid}>
-            
+
     //         <Grid >
     //             <Grid xs={12}>
     //                 <Paper className={classes.card} variant="outlined">

@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from "react";
-import { Redirect, Route, Switch } from 'react-router-dom';
+import React, {useContext, useEffect} from "react";
+import {Redirect, Route, Switch} from 'react-router-dom';
 // components
 import Layout from "./components/Layout";
 // import Login from "./pages/Login";
 import Landing from './pages/Landing';
 import Register from './pages/Register';
 
-import { makeStyles } from "@material-ui/core";
-import { AuthContext } from './contexts/AuthContext';
+import {makeStyles} from "@material-ui/core";
+import {AuthContext} from './contexts/AuthContext';
 
 const useStyles = makeStyles((theme) => ({
     footer: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 export default function App() {
     // global
     // const classes = useStyles();
-    const { isAuth, updateAuth, updateToken, token } = useContext(AuthContext);
+    const {isAuth, updateAuth, updateToken, token} = useContext(AuthContext);
 
     const checkAuthenticated = () => {
         fetch('http://localhost:8000/api/user/verify', {
@@ -42,10 +42,10 @@ export default function App() {
     return (
         <div className="App">
             <Switch>
-                <Route path="/" render={() => !isAuth ? (<Landing />) : (<Redirect to="/app" />)} exact />
+                <Route path="/" render={() => !isAuth ? (<Landing/>) : (<Redirect to="/app"/>)} exact/>
                 {/* <Route path="/login" render={() => <Login/>} exact/> */}
-                <Route path="/app" component={Layout} />
-                <Route path="/register" render={() => !isAuth ? (<Register />) : (<Redirect to="/app" />)} />
+                <Route path="/app" component={Layout}/>
+                <Route path="/register" render={() => !isAuth ? (<Register/>) : (<Redirect to="/app"/>)}/>
 
                 <Route path='*'>
                     <div>Not Found</div>

@@ -15,16 +15,16 @@ var webSocketPort = 3001;
 
 // Web Sockets
 var WebSocketServer = require('ws').Server
-    ,wss = new WebSocketServer({port: webSocketPort});
+    , wss = new WebSocketServer({port: webSocketPort});
 
-var messages=[];
+var messages = [];
 
-wss.on('close', function() {
+wss.on('close', function () {
     console.log('disconnected');
 });
 
-wss.broadcast = function(message){
-    for(let ws of this.clients){
+wss.broadcast = function (message) {
+    for (let ws of this.clients) {
         ws.send(message);
     }
 
@@ -32,12 +32,12 @@ wss.broadcast = function(message){
     // this.clients.forEach(function (ws){ ws.send(message); });
 };
 
-wss.on('connection', function(ws) {
+wss.on('connection', function (ws) {
     var i;
-    for(i=0;i<messages.length;i++){
+    for (i = 0; i < messages.length; i++) {
         ws.send(messages[i]);
     }
-    ws.on('message', function(message) {
+    ws.on('message', function (message) {
         console.log(message);
         // ws.send(message);
         wss.broadcast(message);

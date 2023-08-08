@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from "react";
 import {AuthContext} from '../../contexts/AuthContext';
-import Game from "../Game";
+import Game from "../../components/Game";
 // styles
 import useStyles from "./styles";
 import Snackbar from '@material-ui/core/Snackbar';
