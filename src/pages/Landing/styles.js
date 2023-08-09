@@ -1,5 +1,4 @@
-import {makeStyles} from "@material-ui/core/styles";
-import {green} from "@material-ui/core/colors";
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -10,17 +9,17 @@ const useStyles = makeStyles((theme) => ({
             theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        position: 'relative', // Add position relative
     },
 
+    playButton: {
+        position: 'absolute',
+        bottom: '15%', // Adjust as needed
+        left: '50%',
+        transform: 'translateX(-50%)',
+    },
     about: {
         height: '80vh',
-    },
-    buttonProgress: {
-        color: green[500],
-        position: 'absolute',
-        top: '40%',
-        left: '50%',
-        marginLeft: -12,
     },
     navbar: {
         color: '#FBFAF8',
@@ -42,32 +41,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'flex-end',
     },
 
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: "30px",
-        marginRight: "35%"
-    },
-
-    submit: {
-        height: 35,
-        margin: theme.spacing(3, 0, 2),
-        backgroundColor: "#55bfbc",
-        color: "white",
-        "&:hover": {
-            backgroundColor: "#39807e"
-        }
-    },
-
-    card: {
-        float: "right",
-        padding: '30px',
-        maxWidth: "400px",
-        marginRight: "35%",
-
-    },
-    wrapper: {
-        position: 'relative',
-    },
     slogan: {
         fontFamily: "Poppins",
         color: "white",

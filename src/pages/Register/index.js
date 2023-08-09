@@ -4,7 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '../../components/Typography';
-import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Paper} from '@material-ui/core'
 import {useFormik} from 'formik';
@@ -17,7 +16,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import {AuthContext} from "../../contexts/AuthContext";
 import CircularProgress from '@material-ui/core/CircularProgress'
-import {green} from '@material-ui/core/colors';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -30,8 +28,6 @@ import useStyles from './styles';
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-
-
 
 
 const validationSchema = yup.object({

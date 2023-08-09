@@ -17,6 +17,7 @@ import {green} from '@material-ui/core/colors';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import useStyles from './styles';
+import LoginForm from "../../components/LoginForm";
 
 
 const validationSchema = yup.object({
@@ -106,7 +107,7 @@ function Landing() {
                                     About
                                 </Button>
                                 <Button color="inherit" onClick={() => {
-                                    window.location.href = '/#/register';
+                                    window.location.href = '/register';
                                 }}>Register</Button>
                             </div>
                         </Toolbar>
@@ -118,71 +119,10 @@ function Landing() {
                         Login to Battle Royale</b>
                     </Typography>
                 </Grid>
-
                 <Grid item xs={6}>
-                    <Card className={classes.card}>
-
-                        <Typography align="center" component="h1" variant="h4">Login</Typography>
-
-                        <hr border="1px solid gray" height="1px" width="60%" color="#dbdbdb"/>
-
-                        <form className={classes.form} onSubmit={formik.handleSubmit}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        id="username"
-                                        label="Username"
-                                        name="username"
-                                        value={formik.values.username}
-                                        onChange={formik.handleChange}
-                                        error={formik.touched.username && Boolean(formik.errors.username)}
-                                        helperText={formik.touched.username && formik.errors.username}
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        name="password"
-                                        label="Password"
-                                        type="password"
-                                        id="password"
-                                        autoComplete="current-password"
-                                        value={formik.values.password}
-                                        onChange={formik.handleChange}
-                                        error={confirmPass || formik.touched.password && Boolean(formik.errors.password)}
-                                        helperText={formik.touched.password && formik.errors.password}
-                                    />
-                                </Grid>
-
-                            </Grid>
-                            <div className={classes.wrapper}>
-                                <Button fullWidth variant="contained" type="submit"
-                                        className={classes.submit} disabled={loading}
-                                        onClick={() => {
-                                            window.location.href = '/#/app/play';
-                                        }}>
-                                    {loading ? "" : "Login"}
-                                </Button>
-                                {loading && <CircularProgress size={24} className={classes.buttonProgress}/>}
-                            </div>
-                        </form>
-
-                        <Grid container justify="center">
-                            <Grid item>
-                                <Link href="/#/register" variant="body2">
-                                    Don't have an account? Register
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </Card>
+                    <LoginForm/>
                 </Grid>
-
-            </Grid>
+            </Grid>>
 
             <div ref={myRef} id="About" className={classes.about}>
                 <Grid container>

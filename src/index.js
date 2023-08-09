@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {HashRouter} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import {AuthContextProvider} from './contexts/AuthContext';
 
 ReactDOM.render(
     <React.StrictMode>
-        <HashRouter>
+        <BrowserRouter>
             <AuthContextProvider>
                 <App/>
             </AuthContextProvider>
-        </HashRouter>,
+        </BrowserRouter>,
     </React.StrictMode>,
     document.getElementById('root')
 );
