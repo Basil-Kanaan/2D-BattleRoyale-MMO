@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
-import { Grid, Paper, Typography, Container } from "@material-ui/core";
-import { AuthContext } from '../../contexts/AuthContext';
+import React, {useContext, useEffect} from "react";
+import {Container, Grid, Paper, Typography} from "@material-ui/core";
+import {AuthContext} from '../../contexts/AuthContext';
 import useStyles from "./styles";
 import MuiAlert from '@material-ui/lab/Alert';
 
@@ -10,7 +10,7 @@ function Alert(props) {
 
 export default function Instructions(props) {
     const classes = useStyles();
-    const { isAuth } = useContext(AuthContext);
+    const {isAuth} = useContext(AuthContext);
 
     const checkAuth = () => {
         fetch('http://localhost:8000/api/user/verify', {
@@ -47,7 +47,8 @@ export default function Instructions(props) {
                             <li>Collect ammo packs to reload.</li>
                             <li>Quadrants represent different terrains with effects:
                                 <ul>
-                                    <li className={classes.purpleText}>Nether (Purple): Higher damage for all players.</li>
+                                    <li className={classes.purpleText}>Nether (Purple): Higher damage for all players.
+                                    </li>
                                     <li className={classes.blueText}>Ice (Blue): Faster movement speed.</li>
                                     <li className={classes.yellowText}>Sand (Yellow): Slower movement.</li>
                                     <li className={classes.greenText}>Grass (Green): Normal movement.</li>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -43,9 +43,36 @@ export default function AppNavbar() {
     const { updateAuth, updateToken } = useContext(AuthContext);
     const history = useHistory();
     const [value, setValue] = useState(0);
+    const [disableSpaceScrolling, setDisableSpaceScrolling] = useState(false);
+    const appBarRef = useRef(null);
+
+    useEffect(() => {
+        const handleKeydown = (event) => {
+            if (disableSpaceScrolling && event.key === ' ') {
+                event.preventDefault();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeydown);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeydown);
+        };
+    }, [disableSpaceScrolling]);
 
     const handleTabChange = (event, newValue) => {
         setValue(newValue);
+
+        // Enable/disable spacebar scrolling based on the tab clicked
+        if (newValue === 0) {
+            setDisableSpaceScrolling(true);
+            // Scroll to the top of the AppBar (play tab)
+            if (appBarRef.current) {
+                appBarRef.current.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            setDisableSpaceScrolling(false);
+        }
     };
 
     const handlePlay = () => {
@@ -82,11 +109,11 @@ export default function AppNavbar() {
                     onChange={handleTabChange}
                     centered
                 >
-                    <Tab label="Play" onClick={handlePlay} icon={<HomeIcon />} />
-                    <Tab label="Instructions" onClick={handleInstructions} icon={<FileCopyIcon />} />
-                    <Tab label="Stats" onClick={handleStats} icon={<EqualizerIcon />} />
-                    <Tab label="Profile" onClick={handleProfile} icon={<PersonIcon />} />
-                    <Tab label="Logout" onClick={handleLogout} icon={<CompareArrowsIcon />} />
+                    <Tab label="Play" onClick={handlePlay} icon={<HomeIcon/>}/>
+                    <Tab label="Instructions" onClick={handleInstructions} icon={<FileCopyIcon/>}/>
+                    <Tab label="Stats" onClick={handleStats} icon={<EqualizerIcon/>}/>
+                    <Tab label="Profile" onClick={handleProfile} icon={<PersonIcon/>}/>
+                    <Tab label="Logout" onClick={handleLogout} icon={<CompareArrowsIcon/>}/>
                 </Tabs>
             </Toolbar>
         </AppBar>
